@@ -1,4 +1,4 @@
-package main // import "github.com/deshboard/boilerplate-service"
+package main // import "github.com/deshboard/boilerplate-grpc-service"
 
 import (
 	"context"
@@ -13,7 +13,7 @@ import (
 	"syscall"
 
 	"github.com/Sirupsen/logrus"
-	"github.com/deshboard/boilerplate-service/app"
+	"github.com/deshboard/boilerplate-grpc-service/app"
 	opentracing "github.com/opentracing/opentracing-go"
 	"github.com/sagikazarmark/healthz"
 )

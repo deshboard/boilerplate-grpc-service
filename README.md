@@ -1,6 +1,6 @@
-# Boilerplate Service
+# Boilerplate gRPC Service
 
-[![Build Status](https://img.shields.io/travis/deshboard/boilerplate-service.svg?style=flat-square)](https://travis-ci.org/deshboard/boilerplate-service)
+[![Build Status](https://img.shields.io/travis/deshboard/boilerplate-grpc-service.svg?style=flat-square)](https://travis-ci.org/deshboard/boilerplate-grpc-service)
 
 
 ## Documentation

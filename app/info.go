@@ -2,8 +2,8 @@ package app
 
 // Service info
 const (
-	ServiceName         = "boilerplate.service"
-	FriendlyServiceName = "Boilerplate"
+	ServiceName         = "boilerplate.grpc.service"
+	FriendlyServiceName = "BoilerplategRPC"
 )
 
 // Provisioned by ldflags

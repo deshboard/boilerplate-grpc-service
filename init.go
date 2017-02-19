@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/deshboard/boilerplate-service/app"
+	"github.com/deshboard/boilerplate-grpc-service/app"
 	"github.com/evalphobia/logrus_fluent"
 	"github.com/kelseyhightower/envconfig"
 	"gopkg.in/airbrake/gobrake.v2"

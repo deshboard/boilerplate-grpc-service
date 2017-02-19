@@ -1,4 +1,4 @@
-package: github.com/deshboard/boilerplate-service
+package: github.com/deshboard/boilerplate-grpc-service
 import:
 - package: github.com/sagikazarmark/healthz
   version: ^0.4.0
