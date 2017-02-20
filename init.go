@@ -4,6 +4,7 @@ import (
 	"github.com/deshboard/boilerplate-grpc-service/app"
 	"github.com/evalphobia/logrus_fluent"
 	"github.com/kelseyhightower/envconfig"
+	"google.golang.org/grpc/grpclog"
 	"gopkg.in/airbrake/gobrake.v2"
 	logrus_airbrake "gopkg.in/gemnasium/logrus-airbrake-hook.v2"
 )
@@ -13,6 +14,9 @@ func init() {
 	if err != nil {
 		logger.Fatal(err)
 	}
+
+	// Set global gRPC logger
+	grpclog.SetLogger(logger)
 
 	// Initialize Airbrake
 	if config.AirbrakeEnabled {
