@@ -12,7 +12,7 @@ GO_SOURCE_FILES = $(shell find . -type f -name "*.go" -not -name "bindata.go" -n
 GO_PACKAGES = $(shell go list ./... | grep -v /vendor/)
 GODOTENV=$(shell if which godotenv > /dev/null 2>&1; then echo "godotenv"; fi)
 
-.PHONY: install build run watch build-docker docker clean check test watch-test fmt csfix envcheck help
+.PHONY: install build protobuf run watch build-docker docker clean check test watch-test fmt csfix envcheck help
 .DEFAULT_GOAL := help
 
 install: ## Install dependencies
@@ -20,6 +20,10 @@ install: ## Install dependencies
 
 build: ## Build a binary
 	go build ${LDFLAGS} -o build/${BINARY_NAME}
+
+protobuf: ## Generate code from protocol buffer
+	@mkdir -p protobuf/
+	protoc -I vendor/github.com/deshboard/boilerplate-proto/ vendor/github.com/deshboard/boilerplate-proto/boilerplate.proto  --go_out=plugins=grpc,import_path=protobuf:protobuf
 
 run: build ## Build and execute a binary
 ifdef GODOTENV
@@ -63,6 +67,7 @@ envcheck: ## Check environment for all the necessary requirements
 	$(call executable_check,Docker,docker)
 	$(call executable_check,Reflex,reflex)
 	$(call executable_check,Godotenv,godotenv)
+	$(call executable_check,protoc,protoc)
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

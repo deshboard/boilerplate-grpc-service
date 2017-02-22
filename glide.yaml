@@ -14,3 +14,7 @@ import:
   version: ^1.0.1
 - package: github.com/evalphobia/logrus_fluent
   version: ^0.1.0
+- package: github.com/deshboard/boilerplate-proto
+  version: fed797238468483514aee67845bdfd45b3d6c9c3
+- package: google.golang.org/grpc
+  version: ^1.0.5

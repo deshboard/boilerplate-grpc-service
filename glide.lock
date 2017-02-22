@@ -1,14 +1,20 @@
-hash: 069784c1150bb9cb51337862cd67e96bc00b270502b2fa586f888f2579e03ac0
-updated: 2017-02-20T00:36:51.794510991+01:00
+hash: d8e56f5071e431f70df96a529e299fa7ff1dbd140f0807828a3b0fcbad089e7e
+updated: 2017-02-21T15:59:58.574172592+01:00
 imports:
 - name: github.com/airbrake/gobrake
   version: 668876711219e8b0206e2994bf0a59d889c775aa
+- name: github.com/deshboard/boilerplate-proto
+  version: fed797238468483514aee67845bdfd45b3d6c9c3
 - name: github.com/evalphobia/logrus_fluent
   version: 86bb83d119886b935a52194cad48fd01815b0125
 - name: github.com/fluent/fluent-logger-golang
   version: 28bdb662295c1b7aca09c1a4edbf9430010775a9
   subpackages:
   - fluent
+- name: github.com/golang/protobuf
+  version: 69b215d01a5606c843240eab4937eab3acee6530
+  subpackages:
+  - proto
 - name: github.com/kelseyhightower/envconfig
   version: f611eb38b3875cc3bd991ca91c51d06446afa14c
 - name: github.com/opentracing/opentracing-go
@@ -29,10 +35,29 @@ imports:
   version: 61557ac0112b576429a0df080e1c2cef5dfbb642
   subpackages:
   - context
+  - http2
+  - http2/hpack
+  - idna
+  - internal/timeseries
+  - lex/httplex
+  - trace
 - name: golang.org/x/sys
   version: e24f485414aeafb646f6fca458b0bf869c0880a1
   subpackages:
   - unix
+- name: google.golang.org/grpc
+  version: 708a7f9f3283aa2d4f6132d287d78683babe55c8
+  subpackages:
+  - codes
+  - credentials
+  - grpclog
+  - internal
+  - metadata
+  - naming
+  - peer
+  - stats
+  - tap
+  - transport
 - name: gopkg.in/airbrake/gobrake.v2
   version: 668876711219e8b0206e2994bf0a59d889c775aa
 - name: gopkg.in/gemnasium/logrus-airbrake-hook.v2

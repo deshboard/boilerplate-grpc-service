@@ -5,14 +5,18 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"net"
 	"net/http"
 	"os"
 	"os/signal"
 	"sync"
 	"syscall"
 
+	"google.golang.org/grpc"
+
 	"github.com/Sirupsen/logrus"
 	"github.com/deshboard/boilerplate-grpc-service/app"
+	"github.com/deshboard/boilerplate-grpc-service/protobuf"
 	opentracing "github.com/opentracing/opentracing-go"
 	"github.com/sagikazarmark/healthz"
 )
@@ -29,7 +33,8 @@ func main() {
 	defer handleShutdown()
 
 	var (
-		healthAddr = flag.String("health", "0.0.0.0:90", "Health service address.")
+		serviceAddr = flag.String("service", "0.0.0.0:80", "gRPC service address.")
+		healthAddr  = flag.String("health", "0.0.0.0:90", "Health service address.")
 	)
 	flag.Parse()
 
@@ -43,6 +48,9 @@ func main() {
 	w := logger.Logger.WriterLevel(logrus.ErrorLevel)
 	shutdown = append(shutdown, w.Close)
 
+	grpcServer := grpc.NewServer()
+	protobuf.RegisterBoilerplateServer(grpcServer, app.NewService())
+
 	healthHandler, status := newHealthServiceHandler()
 	healthServer := &http.Server{
 		Addr:     *healthAddr,
@@ -51,13 +59,24 @@ func main() {
 	}
 
 	// Force closing server connections (if graceful closing fails)
-	shutdown = append([]shutdownHandler{healthServer.Close}, shutdown...)
+	shutdown = append([]shutdownHandler{shutdownFunc(grpcServer.Stop), healthServer.Close}, shutdown...)
 
 	errChan := make(chan error, 10)
 
 	go func() {
 		logger.WithField("addr", healthServer.Addr).Infof("%s Health service started", app.FriendlyServiceName)
 		errChan <- healthServer.ListenAndServe()
+	}()
+
+	go func() {
+		lis, err := net.Listen("tcp", *serviceAddr)
+		if err != nil {
+			errChan <- err
+			return
+		}
+
+		logger.WithField("addr", lis.Addr()).Infof("%s service started", app.FriendlyServiceName)
+		errChan <- grpcServer.Serve(lis)
 	}()
 
 	signalChan := make(chan os.Signal, 1)
@@ -84,7 +103,14 @@ MainLoop:
 			shutdownContext, shutdownCancel := context.WithTimeout(context.Background(), config.ShutdownTimeout)
 
 			var wg sync.WaitGroup
-			wg.Add(1)
+			wg.Add(2)
+
+			go func() {
+				// TODO: implement timeout
+				grpcServer.GracefulStop()
+
+				wg.Done()
+			}()
 
 			go func() {
 				err := healthServer.Shutdown(shutdownContext)
