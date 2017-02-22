@@ -3,7 +3,7 @@
 // DO NOT EDIT!
 
 /*
-Package protobuf is a generated protocol buffer package.
+Package boilerplate is a generated protocol buffer package.
 
 It is generated from these files:
 	boilerplate.proto
@@ -12,7 +12,7 @@ It has these top-level messages:
 	Request
 	Response
 */
-package protobuf
+package boilerplate
 
 import proto "github.com/golang/protobuf/proto"
 import fmt "fmt"

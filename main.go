@@ -16,7 +16,7 @@ import (
 
 	"github.com/Sirupsen/logrus"
 	"github.com/deshboard/boilerplate-grpc-service/app"
-	"github.com/deshboard/boilerplate-grpc-service/protobuf"
+	"github.com/deshboard/boilerplate-grpc-service/model/boilerplate"
 	opentracing "github.com/opentracing/opentracing-go"
 	"github.com/sagikazarmark/healthz"
 )
@@ -49,7 +49,7 @@ func main() {
 	shutdown = append(shutdown, w.Close)
 
 	grpcServer := grpc.NewServer()
-	protobuf.RegisterBoilerplateServer(grpcServer, app.NewService())
+	boilerplate.RegisterBoilerplateServer(grpcServer, app.NewService())
 
 	healthHandler, status := newHealthServiceHandler()
 	healthServer := &http.Server{
