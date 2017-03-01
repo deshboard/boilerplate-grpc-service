@@ -18,3 +18,8 @@ import:
   version: fed797238468483514aee67845bdfd45b3d6c9c3
 - package: google.golang.org/grpc
   version: ^1.0.5
+- package: golang.org/x/net
+  subpackages:
+  - trace
+- package: github.com/sagikazarmark/serverz
+  version: ~0.1.0
