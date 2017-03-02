@@ -5,7 +5,6 @@ import (
 	"flag"
 	"fmt"
 	"log"
-	"net"
 	"net/http"
 	"os"
 	"os/signal"
@@ -56,6 +55,10 @@ func main() {
 
 	grpcServer := grpc.NewServer()
 	boilerplate.RegisterBoilerplateServer(grpcServer, app.NewService())
+	grpcServerWrapper := &serverz.NamedServer{
+		Server: &serverz.GrpcServer{grpcServer},
+		Name:   "grpc",
+	}
 
 	healthHandler, status := newHealthServiceHandler()
 	healthServer := &serverz.NamedServer{
@@ -68,17 +71,7 @@ func main() {
 	shutdown.RegisterAsFirst(healthServer.Close, serverz.ShutdownFunc(grpcServer.Stop))
 
 	go serverManager.ListenAndStartServer(healthServer, config.HealthAddr)(errChan)
-
-	go func() {
-		lis, err := net.Listen("tcp", config.ServiceAddr)
-		if err != nil {
-			errChan <- err
-			return
-		}
-
-		logger.WithField("addr", lis.Addr()).WithField("server", "grpc").Info("Server started")
-		errChan <- grpcServer.Serve(lis)
-	}()
+	go serverManager.ListenAndStartServer(grpcServerWrapper, config.ServiceAddr)(errChan)
 
 	signal.Notify(signalChan, syscall.SIGINT, syscall.SIGTERM)
 
@@ -107,15 +100,7 @@ MainLoop:
 				go serverManager.StopServer(debugServer, wg)(ctx)
 			}
 			go serverManager.StopServer(healthServer, wg)(ctx)
-
-			wg.Add(1)
-
-			go func() {
-				// TODO: implement timeout
-				grpcServer.GracefulStop()
-
-				wg.Done()
-			}()
+			go serverManager.StopServer(grpcServerWrapper, wg)(ctx)
 
 			wg.Wait()
 
