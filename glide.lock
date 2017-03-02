@@ -1,5 +1,5 @@
-hash: 878118630f959775a934f9326a2478708a869ebf1e227f77dfa8cc784e9633cf
-updated: 2017-03-01T23:22:52.357723508+01:00
+hash: 47c7a179258d07f0911fcf58dd3b6e25f30e5cdf708331e26a460ffe7da2b8c6
+updated: 2017-03-02T11:56:21.104921857+01:00
 imports:
 - name: github.com/airbrake/gobrake
   version: 668876711219e8b0206e2994bf0a59d889c775aa
@@ -26,7 +26,7 @@ imports:
 - name: github.com/sagikazarmark/healthz
   version: 53e8bd01c95dd968996af7f6e8ab52491b49ff7e
 - name: github.com/sagikazarmark/serverz
-  version: f2b8b2cf27595019f4944e8aa085e18622aee8b6
+  version: 6795311fdd32a52d3decca847d2ae602e66af310
 - name: github.com/Sirupsen/logrus
   version: 0208149b40d863d2c1a2f8fe5753096a9cf2cc8b
 - name: github.com/tinylib/msgp
