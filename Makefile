@@ -11,6 +11,7 @@ TAG ?= ${VERSION}
 GO_SOURCE_FILES = $(shell find . -type f -name "*.go" -not -name "bindata.go" -not -path "./vendor/*")
 GO_PACKAGES = $(shell go list ./... | grep -v /vendor/)
 GODOTENV=$(shell if which godotenv > /dev/null 2>&1; then echo "godotenv"; fi)
+PROTO_PATH = vendor/github.com/deshboard/boilerplate-proto
 
 .PHONY: setup install proto build run watch build-docker docker clean check test watch-test fmt csfix envcheck help
 .DEFAULT_GOAL := help
@@ -28,7 +29,7 @@ build: ## Build a binary
 
 proto: ## Generate code from protocol buffer
 	@mkdir -p model/boilerplate/
-	protoc -I vendor/github.com/deshboard/boilerplate-proto/ vendor/github.com/deshboard/boilerplate-proto/boilerplate.proto  --go_out=plugins=grpc:model/boilerplate
+	protoc -I ${PROTO_PATH} ${PROTO_PATH}/boilerplate.proto  --go_out=plugins=grpc:model/boilerplate
 
 run: build ## Build and execute a binary
 ifdef GODOTENV
