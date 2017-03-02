@@ -32,7 +32,7 @@ func init() {
 	logrus.RegisterExitHandler(shutdown.Handle)
 
 	// Set global gRPC logger
-	grpclog.SetLogger(logger)
+	grpclog.SetLogger(logger.WithField("server", "grpc"))
 
 	// Load configuration from environment
 	err := envconfig.Process("app", config)
