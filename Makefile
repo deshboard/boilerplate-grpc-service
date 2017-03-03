@@ -28,8 +28,8 @@ build: ## Build a binary
 	go build ${LDFLAGS} -o build/${BINARY_NAME}
 
 proto: ## Generate code from protocol buffer
-	@mkdir -p model/boilerplate/
-	protoc -I ${PROTO_PATH} ${PROTO_PATH}/boilerplate.proto  --go_out=plugins=grpc:model/boilerplate
+	@mkdir -p model
+	protoc -I ${PROTO_PATH} ${PROTO_PATH}/boilerplate.proto  --go_out=plugins=grpc:model
 
 run: build ## Build and execute a binary
 ifdef GODOTENV
