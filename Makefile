@@ -11,7 +11,7 @@ TAG ?= ${VERSION}
 GO_SOURCE_FILES = $(shell find . -type f -name "*.go" -not -name "bindata.go" -not -path "./vendor/*")
 GO_PACKAGES = $(shell go list ./... | grep -v /vendor/)
 GODOTENV = $(shell if which godotenv > /dev/null 2>&1; then echo "godotenv"; fi)
-PROTO_PATH = vendor/github.com/deshboard/boilerplate-proto
+PROTO_PATH = vendor/github.com/deshboard/boilerplate-proto/proto
 
 .PHONY: setup install proto build run watch build-docker docker clean check test watch-test fmt csfix envcheck help
 .DEFAULT_GOAL := help
@@ -29,7 +29,7 @@ build: ## Build a binary
 
 proto: ## Generate code from protocol buffer
 	@mkdir -p model
-	protoc -I ${PROTO_PATH} ${PROTO_PATH}/boilerplate.proto  --go_out=plugins=grpc:model
+	protowrap -I ${PROTO_PATH} ${PROTO_PATH}/boilerplate/boilerplate.proto ${PROTO_PATH}/boilerplate2/boilerplate2.proto  --go_out=plugins=grpc:model
 
 run: build ## Build and execute a binary
 ifdef GODOTENV
@@ -74,6 +74,7 @@ envcheck: ## Check environment for all the necessary requirements
 	$(call executable_check,Reflex,reflex)
 	$(call executable_check,Godotenv,godotenv)
 	$(call executable_check,protoc,protoc)
+	$(call executable_check,protowrap,protowrap)
 
 define executable_check
     @printf "\033[36m%-30s\033[0m %s\n" "$(1)" `if which $(2) > /dev/null 2>&1; then echo "\033[0;32m✓\033[0m"; else echo "\033[0;31m✗\033[0m"; fi`
