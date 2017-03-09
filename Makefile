@@ -13,7 +13,7 @@ GO_PACKAGES = $(shell go list ./... | grep -v /vendor/)
 GODOTENV = $(shell if which godotenv > /dev/null 2>&1; then echo "godotenv"; fi)
 PROTO_PATH = vendor/github.com/deshboard/boilerplate-proto/proto
 
-.PHONY: setup install proto build run watch build-docker docker clean check test watch-test fmt csfix envcheck help
+.PHONY: setup install build run watch build-docker docker clean check test watch-test fmt csfix envcheck help proto
 .DEFAULT_GOAL := help
 
 setup: envcheck install .env ## Setup the project for development
@@ -23,10 +23,6 @@ install: ## Install dependencies
 
 .env: ## Create local env file
 	cp .env.example .env
-
-proto: ## Generate code from protocol buffer
-	@mkdir -p model
-	protowrap -I ${PROTO_PATH} ${PROTO_PATH}/boilerplate/boilerplate.proto ${PROTO_PATH}/boilerplate2/boilerplate2.proto  --go_out=plugins=grpc:model
 
 build: ## Build a binary
 	go build ${LDFLAGS} -o build/${BINARY_NAME}
@@ -82,3 +78,7 @@ endef
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
+proto: ## Generate code from protocol buffer
+	@mkdir -p model
+	protowrap -I ${PROTO_PATH} ${PROTO_PATH}/boilerplate/boilerplate.proto ${PROTO_PATH}/boilerplate2/boilerplate2.proto  --go_out=plugins=grpc:model
