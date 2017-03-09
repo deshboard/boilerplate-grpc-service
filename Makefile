@@ -24,12 +24,12 @@ install: ## Install dependencies
 .env: ## Create local env file
 	cp .env.example .env
 
-build: ## Build a binary
-	go build ${LDFLAGS} -o build/${BINARY_NAME}
-
 proto: ## Generate code from protocol buffer
 	@mkdir -p model
 	protowrap -I ${PROTO_PATH} ${PROTO_PATH}/boilerplate/boilerplate.proto ${PROTO_PATH}/boilerplate2/boilerplate2.proto  --go_out=plugins=grpc:model
+
+build: ## Build a binary
+	go build ${LDFLAGS} -o build/${BINARY_NAME}
 
 run: build ## Build and execute a binary
 ifdef GODOTENV
