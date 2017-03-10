@@ -1,3 +1,5 @@
+PROTO_PATH = vendor/github.com/deshboard/boilerplate-proto/proto
+
 .PHONY: proto
 
 proto: ## Generate code from protocol buffer

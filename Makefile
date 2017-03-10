@@ -11,7 +11,6 @@ TAG ?= ${VERSION}
 GO_SOURCE_FILES = $(shell find . -type f -name "*.go" -not -name "bindata.go" -not -path "./vendor/*")
 GO_PACKAGES = $(shell go list ./... | grep -v /vendor/)
 GODOTENV = $(shell if which godotenv > /dev/null 2>&1; then echo "godotenv"; fi)
-PROTO_PATH = vendor/github.com/deshboard/boilerplate-proto/proto
 
 .PHONY: setup install clean build run watch build-docker docker check test watch-test fmt csfix envcheck help
 .DEFAULT_GOAL := help
