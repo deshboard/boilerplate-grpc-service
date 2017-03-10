@@ -1,11 +1,11 @@
 package app
 
 import (
-	"github.com/deshboard/boilerplate-grpc-service/model/boilerplate"
+	"github.com/deshboard/boilerplate-grpc-service/proto/boilerplate"
 	context "golang.org/x/net/context"
 )
 
-// Service implements the Protocol Buffer RPC server
+// Service implements the RPC server
 type Service struct{}
 
 // NewService creates a new service object

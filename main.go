@@ -15,7 +15,7 @@ import (
 
 	"github.com/Sirupsen/logrus"
 	"github.com/deshboard/boilerplate-grpc-service/app"
-	"github.com/deshboard/boilerplate-grpc-service/model/boilerplate"
+	"github.com/deshboard/boilerplate-grpc-service/proto/boilerplate"
 	"github.com/sagikazarmark/healthz"
 	"github.com/sagikazarmark/serverz"
 )
