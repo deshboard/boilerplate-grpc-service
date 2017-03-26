@@ -9,3 +9,4 @@ proto: ## Generate code from protocol buffer
 
 envcheck::
 	$(call executable_check,protoc,protoc)
+	$(call executable_check,protoc-gen-go,protoc-gen-go)
