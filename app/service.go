@@ -1,7 +1,7 @@
 package app
 
 import (
-	"github.com/deshboard/boilerplate-grpc-service/proto/boilerplate"
+	"github.com/deshboard/boilerplate-grpc-service/apis/boilerplate"
 	context "golang.org/x/net/context"
 )
 

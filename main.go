@@ -14,8 +14,8 @@ import (
 	"google.golang.org/grpc"
 
 	"github.com/Sirupsen/logrus"
+	"github.com/deshboard/boilerplate-grpc-service/apis/boilerplate"
 	"github.com/deshboard/boilerplate-grpc-service/app"
-	"github.com/deshboard/boilerplate-grpc-service/proto/boilerplate"
 	"github.com/sagikazarmark/healthz"
 	"github.com/sagikazarmark/serverz"
 )
