@@ -101,8 +101,9 @@ MainLoop:
 			if config.Debug {
 				go serverManager.StopServer(debugServer, wg)(ctx)
 			}
-			go serverManager.StopServer(healthServer, wg)(ctx)
+
 			go serverManager.StopServer(grpcServerWrapper, wg)(ctx)
+			go serverManager.StopServer(healthServer, wg)(ctx)
 
 			wg.Wait()
 
