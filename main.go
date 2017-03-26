@@ -60,7 +60,9 @@ func main() {
 		Name:   "grpc",
 	}
 
-	healthHandler, status := newHealthServiceHandler()
+	status := healthz.NewStatusChecker(healthz.Healthy)
+	readiness := status
+	healthHandler := healthz.NewHealthServiceHandler(healthz.NewCheckers(), readiness)
 	healthServer := &serverz.NamedServer{
 		Server: &http.Server{
 			Handler:  healthHandler,
