@@ -55,7 +55,7 @@ func main() {
 	}
 
 	grpcServer := grpc.NewServer()
-	boilerplate.RegisterBoilerplateServer(grpcServer, app.NewService())
+	boilerplate.RegisterBoilerplateServer(grpcServer, app.NewService(logger))
 	grpcServerWrapper := &serverz.NamedServer{
 		Server: &serverz.GrpcServer{grpcServer},
 		Name:   "grpc",
