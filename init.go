@@ -13,7 +13,8 @@ import (
 	"github.com/evalphobia/logrus_fluent"
 	"github.com/kelseyhightower/envconfig"
 	opentracing "github.com/opentracing/opentracing-go"
-	"github.com/sagikazarmark/serverz"
+	"github.com/sagikazarmark/utilz/errors"
+	"github.com/sagikazarmark/utilz/util"
 	"golang.org/x/net/trace"
 	"google.golang.org/grpc/grpclog"
 	"gopkg.in/airbrake/gobrake.v2"
@@ -22,15 +23,15 @@ import (
 
 // Global context variables
 var (
-	config   = &app.Configuration{}
-	logger   = logrus.New().WithField("service", app.ServiceName) // Use logrus.FieldLogger type
-	tracer   = opentracing.GlobalTracer()
-	shutdown = serverz.NewShutdown(logger)
+	config          = &app.Configuration{}
+	logger          = logrus.New().WithField("service", app.ServiceName)
+	tracer          = opentracing.GlobalTracer()
+	shutdownManager = util.NewShutdownManager(errors.NewLogHandler(logger))
 )
 
 func init() {
 	// Register shutdown handler in logrus
-	logrus.RegisterExitHandler(shutdown.Handle)
+	logrus.RegisterExitHandler(shutdownManager.Shutdown)
 
 	// Set global gRPC logger
 	grpclog.SetLogger(logger.WithField("server", "grpc"))
@@ -74,7 +75,7 @@ func init() {
 		})
 
 		logger.Logger.Hooks.Add(airbrakeHook)
-		shutdown.Register(airbrake.Close)
+		shutdownManager.Register(airbrake.Close)
 	}
 
 	// Initialize Fluentd
@@ -84,10 +85,16 @@ func init() {
 			logger.Panic(err)
 		}
 
-		fluentdHook.SetTag(app.ServiceName)
+		// Configure fluent tag
+		if app.FluentdTag != "" {
+			fluentdHook.SetTag(app.FluentdTag)
+		} else {
+			fluentdHook.SetTag(app.ServiceName)
+		}
+
 		fluentdHook.AddFilter("error", logrus_fluent.FilterError)
 
 		logger.Logger.Hooks.Add(fluentdHook)
-		shutdown.Register(fluentdHook.Fluent.Close)
+		shutdownManager.Register(fluentdHook.Fluent.Close)
 	}
 }
