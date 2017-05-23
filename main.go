@@ -13,7 +13,6 @@ import (
 	"time"
 
 	"github.com/Sirupsen/logrus"
-	"github.com/deshboard/boilerplate-grpc-service/apis/boilerplate"
 	"github.com/deshboard/boilerplate-grpc-service/app"
 	"github.com/sagikazarmark/healthz"
 	"github.com/sagikazarmark/serverz"
@@ -56,7 +55,6 @@ func main() {
 	}
 
 	grpcServer := grpc.NewServer()
-	boilerplate.RegisterBoilerplateServer(grpcServer, app.NewService(logger))
 	grpcServerWrapper := &serverz.NamedServer{
 		Server: &serverz.GrpcServer{grpcServer},
 		Name:   "grpc",

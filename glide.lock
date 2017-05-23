@@ -1,10 +1,8 @@
-hash: 3a40cdd3deb70c10afe8c2faec9cde238e3c413fa69eded3b8b7082ad81fa324
-updated: 2017-05-23T22:33:12.544578263+02:00
+hash: 72ea1f1fd7ab3617e189a16c918d956f379c75210daa637cb69624c4a7fb38f1
+updated: 2017-05-23T22:38:39.841637281+02:00
 imports:
 - name: github.com/airbrake/gobrake
   version: 668876711219e8b0206e2994bf0a59d889c775aa
-- name: github.com/deshboard/boilerplate-proto
-  version: bfab9f9986b3b8b005c72e486f4a9dfe379f6012
 - name: github.com/evalphobia/logrus_fluent
   version: 86bb83d119886b935a52194cad48fd01815b0125
 - name: github.com/fluent/fluent-logger-golang
