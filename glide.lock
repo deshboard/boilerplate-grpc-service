@@ -1,5 +1,5 @@
-hash: c5925b42ad402a6ff99d50bf789486161f0686c84a9e507d5ed65ea89a4440b1
-updated: 2017-05-16T16:58:52.180999472+02:00
+hash: 3a40cdd3deb70c10afe8c2faec9cde238e3c413fa69eded3b8b7082ad81fa324
+updated: 2017-05-23T22:33:12.544578263+02:00
 imports:
 - name: github.com/airbrake/gobrake
   version: 668876711219e8b0206e2994bf0a59d889c775aa
@@ -29,7 +29,7 @@ imports:
 - name: github.com/sagikazarmark/serverz
   version: 59a44e00a01fbec7f080dc8d0e13366100439f32
 - name: github.com/sagikazarmark/utilz
-  version: 5b9d3f7d70e84fd8c7ad3142775016998e117e4e
+  version: a25eb2121e4945c240475f89dd3bc1bdd6fef1c9
   subpackages:
   - errors
   - util
@@ -84,4 +84,9 @@ imports:
   version: 668876711219e8b0206e2994bf0a59d889c775aa
 - name: gopkg.in/gemnasium/logrus-airbrake-hook.v2
   version: bfee1239d796830ca346767650cce5ba90d58c57
-testImports: []
+testImports:
+- name: github.com/DATA-DOG/godog
+  version: 92fbee719c9593813b24a6ef042bcad40324ede4
+  subpackages:
+  - colors
+  - gherkin
