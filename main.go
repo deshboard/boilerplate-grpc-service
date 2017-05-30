@@ -14,6 +14,10 @@ import (
 
 	"github.com/Sirupsen/logrus"
 	"github.com/deshboard/boilerplate-grpc-service/app"
+	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
+	grpc_logrus "github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus"
+	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
+	grpc_opentracing "github.com/grpc-ecosystem/go-grpc-middleware/tracing/opentracing"
 	"github.com/sagikazarmark/healthz"
 	"github.com/sagikazarmark/serverz"
 	"github.com/sagikazarmark/utilz/util"
@@ -54,7 +58,18 @@ func main() {
 		go serverManager.ListenAndStartServer(debugServer, config.DebugAddr)(errChan)
 	}
 
-	grpcServer := grpc.NewServer()
+	grpcServer := grpc.NewServer(
+		grpc.StreamInterceptor(grpc_middleware.ChainStreamServer(
+			grpc_opentracing.StreamServerInterceptor(grpc_opentracing.WithTracer(tracer)),
+			grpc_logrus.StreamServerInterceptor(logger),
+			grpc_recovery.StreamServerInterceptor(),
+		)),
+		grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(
+			grpc_opentracing.UnaryServerInterceptor(grpc_opentracing.WithTracer(tracer)),
+			grpc_logrus.UnaryServerInterceptor(logger),
+			grpc_recovery.UnaryServerInterceptor(),
+		)),
+	)
 	grpcServerWrapper := &serverz.NamedServer{
 		Server: &serverz.GrpcServer{grpcServer},
 		Name:   "grpc",
