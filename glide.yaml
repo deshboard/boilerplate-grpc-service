@@ -23,6 +23,7 @@ import:
   version: ~0.2.0
 - package: google.golang.org/grpc
   version: ^1.0.5
+- package: github.com/grpc-ecosystem/go-grpc-middleware
 testImport:
 - package: github.com/DATA-DOG/godog
   version: ^0.7.2

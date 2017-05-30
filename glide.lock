@@ -1,5 +1,5 @@
-hash: 72ea1f1fd7ab3617e189a16c918d956f379c75210daa637cb69624c4a7fb38f1
-updated: 2017-05-23T22:38:39.841637281+02:00
+hash: c0dc07c77dfd23b5d99f3c484d3094bbee6653d04ad1809ec0c6f182b7b563b6
+updated: 2017-05-30T02:46:26.483945416+02:00
 imports:
 - name: github.com/airbrake/gobrake
   version: 668876711219e8b0206e2994bf0a59d889c775aa
@@ -14,6 +14,8 @@ imports:
   subpackages:
   - proto
   - ptypes/any
+- name: github.com/grpc-ecosystem/go-grpc-middleware
+  version: 04e29b049615a854b3a943e372e180c5ec3f7dc3
 - name: github.com/kelseyhightower/envconfig
   version: f611eb38b3875cc3bd991ca91c51d06446afa14c
 - name: github.com/opentracing/opentracing-go
@@ -27,7 +29,7 @@ imports:
 - name: github.com/sagikazarmark/serverz
   version: 59a44e00a01fbec7f080dc8d0e13366100439f32
 - name: github.com/sagikazarmark/utilz
-  version: a25eb2121e4945c240475f89dd3bc1bdd6fef1c9
+  version: 616992984d7477c8fcf31bea6a64b296f26e82ce
   subpackages:
   - errors
   - util
