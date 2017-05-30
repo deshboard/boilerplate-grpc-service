@@ -9,6 +9,10 @@ go:
     - 1.8.x
     - tip
 
+matrix:
+    allow_failures:
+        - go: tip
+
 before_install:
     - mkdir -p $HOME/bin
     - curl -sL http://get.binhq.io/gitbin | DEST=$HOME/bin bash
@@ -26,10 +30,12 @@ script:
     - if [[ $TRAVIS_TAG = "$VERSION" ]]; then export DOCKER_LATEST=true; fi
     - make docker
 
+before_deploy: docker login -u $DOCKER_USER -p $DOCKER_PASS
+
 deploy:
     provider: script
     skip_cleanup: true
-    script: docker login -u $DOCKER_USER -p $DOCKER_PASS && docker push $DOCKER_IMAGE
+    script: docker push $DOCKER_IMAGE
     on:
         all_branches: true
         condition: $TRAVIS_GO_VERSION =~ ^1\.8(\.[0-9]+)?$

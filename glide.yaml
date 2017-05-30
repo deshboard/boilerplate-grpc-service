@@ -21,6 +21,8 @@ import:
   version: ~0.3.0
 - package: github.com/sagikazarmark/utilz
   version: ~0.2.0
+- package: github.com/prometheus/client_golang
+  version: ~0.8.0
 - package: google.golang.org/grpc
   version: ^1.0.5
 - package: github.com/grpc-ecosystem/go-grpc-middleware

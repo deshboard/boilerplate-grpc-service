@@ -1,8 +1,12 @@
-hash: c0dc07c77dfd23b5d99f3c484d3094bbee6653d04ad1809ec0c6f182b7b563b6
-updated: 2017-05-30T02:46:26.483945416+02:00
+hash: 872073ac3f9a1456e523b04ec15c36146069ff4acac941ab657bb63063a39dd6
+updated: 2017-05-30T05:41:13.777285267+02:00
 imports:
 - name: github.com/airbrake/gobrake
   version: 668876711219e8b0206e2994bf0a59d889c775aa
+- name: github.com/beorn7/perks
+  version: 4c0e84591b9aa9e6dcfdf3e020114cd81f89d5f9
+  subpackages:
+  - quantile
 - name: github.com/evalphobia/logrus_fluent
   version: 86bb83d119886b935a52194cad48fd01815b0125
 - name: github.com/fluent/fluent-logger-golang
@@ -12,18 +16,50 @@ imports:
 - name: github.com/golang/protobuf
   version: 69b215d01a5606c843240eab4937eab3acee6530
   subpackages:
+  - jsonpb
   - proto
   - ptypes/any
 - name: github.com/grpc-ecosystem/go-grpc-middleware
   version: 04e29b049615a854b3a943e372e180c5ec3f7dc3
+  subpackages:
+  - logging
+  - logging/logrus
+  - recovery
+  - tags
+  - tracing/opentracing
+  - util/metautils
 - name: github.com/kelseyhightower/envconfig
   version: f611eb38b3875cc3bd991ca91c51d06446afa14c
+- name: github.com/matttproud/golang_protobuf_extensions
+  version: c12348ce28de40eed0136aa2b644d0ee0650e56c
+  subpackages:
+  - pbutil
 - name: github.com/opentracing/opentracing-go
   version: 1949ddbfd147afd4d964a9f00b24eb291e0e7c38
   subpackages:
+  - ext
   - log
 - name: github.com/philhofer/fwd
   version: 98c11a7a6ec829d672b03833c3d69a7fae1ca972
+- name: github.com/prometheus/client_golang
+  version: c5b7fccd204277076155f10851dad72b76a49317
+  subpackages:
+  - prometheus
+  - prometheus/promhttp
+- name: github.com/prometheus/client_model
+  version: 6f3806018612930941127f2a7c6c453ba2c527d2
+  subpackages:
+  - go
+- name: github.com/prometheus/common
+  version: 13ba4ddd0caa9c28ca7b7bffe1dfa9ed8d5ef207
+  subpackages:
+  - expfmt
+  - internal/bitbucket.org/ww/goautoneg
+  - model
+- name: github.com/prometheus/procfs
+  version: 65c1f6f8f0fc1e2185eb9863a3bc751496404259
+  subpackages:
+  - xfs
 - name: github.com/sagikazarmark/healthz
   version: 941786782b035e1a9a533ca7b8c685792b3cbedb
 - name: github.com/sagikazarmark/serverz

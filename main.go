@@ -18,6 +18,7 @@ import (
 	grpc_logrus "github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus"
 	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
 	grpc_opentracing "github.com/grpc-ecosystem/go-grpc-middleware/tracing/opentracing"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/sagikazarmark/healthz"
 	"github.com/sagikazarmark/serverz"
 	"github.com/sagikazarmark/utilz/util"
@@ -79,6 +80,12 @@ func main() {
 	status := healthz.NewStatusChecker(healthz.Healthy)
 	readiness := status
 	healthHandler := healthz.NewHealthServiceHandler(serviceHealth, readiness)
+
+	if config.MetricsEnabled {
+		healthHandler := healthHandler.(*http.ServeMux)
+		healthHandler.Handle("/", promhttp.Handler())
+	}
+
 	healthServer := &serverz.NamedServer{
 		Server: &http.Server{
 			Handler:  healthHandler,
