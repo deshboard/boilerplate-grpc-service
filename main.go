@@ -37,7 +37,7 @@ func main() {
 		"commitHash":  app.CommitHash,
 		"buildDate":   app.BuildDate,
 		"environment": config.Environment,
-	}).Printf("Starting %s", app.FriendlyServiceName)
+	}).Infof("Starting %s", app.FriendlyServiceName)
 
 	w := logger.Logger.WriterLevel(logrus.ErrorLevel)
 	shutdownManager.Register(w.Close)
@@ -55,8 +55,8 @@ func main() {
 			},
 			Name: "debug",
 		}
-		shutdownManager.RegisterAsFirst(debugServer.Close)
 
+		shutdownManager.RegisterAsFirst(debugServer.Close)
 		go serverManager.ListenAndStartServer(debugServer, config.DebugAddr)(errChan)
 	}
 
@@ -83,13 +83,20 @@ func main() {
 	}
 
 	serviceHealth := healthz.NewTCPChecker(config.ServiceAddr, healthz.WithTCPTimeout(2*time.Second))
+	checkerCollector.RegisterChecker(healthz.LivenessCheck, serviceHealth)
+
 	status := healthz.NewStatusChecker(healthz.Healthy)
-	readiness := status
-	healthHandler := healthz.NewHealthServiceHandler(serviceHealth, readiness)
+	checkerCollector.RegisterChecker(healthz.ReadinessCheck, status)
+	healthService := checkerCollector.NewHealthService()
+	healthHandler := http.NewServeMux()
+
+	healthHandler.Handle("/healthz", healthService.Handler(healthz.LivenessCheck))
+	healthHandler.Handle("/readiness", healthService.Handler(healthz.ReadinessCheck))
 
 	if config.MetricsEnabled {
-		healthHandler := healthHandler.(*http.ServeMux)
-		healthHandler.Handle("/", promhttp.Handler())
+		logger.Debug("Serving metrics under health endpoint")
+
+		healthHandler.Handle("/metrics", promhttp.Handler())
 	}
 
 	healthServer := &serverz.NamedServer{
@@ -100,10 +107,9 @@ func main() {
 		Name: "health",
 	}
 
-	shutdownManager.RegisterAsFirst(healthServer.Close, util.ShutdownFunc(grpcServer.Stop))
-
-	go serverManager.ListenAndStartServer(healthServer, config.HealthAddr)(errChan)
+	shutdownManager.RegisterAsFirst(util.ShutdownFunc(grpcServer.Stop), healthServer.Close)
 	go serverManager.ListenAndStartServer(grpcServerWrapper, config.ServiceAddr)(errChan)
+	go serverManager.ListenAndStartServer(healthServer, config.HealthAddr)(errChan)
 
 	signal.Notify(signalChan, syscall.SIGINT, syscall.SIGTERM)
 
@@ -124,6 +130,8 @@ MainLoop:
 		case s := <-signalChan:
 			logger.Infof(fmt.Sprintf("Captured %v", s))
 			status.SetStatus(healthz.Unhealthy)
+
+			logger.Debugf("Shutting down with timeout %v", config.ShutdownTimeout)
 
 			ctx, cancel := context.WithTimeout(context.Background(), config.ShutdownTimeout)
 			wg := &sync.WaitGroup{}

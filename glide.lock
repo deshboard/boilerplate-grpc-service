@@ -1,5 +1,5 @@
-hash: 6bfb37fa41f5bdd8df82a668b10f8b49eb0df26a23199739671734d99c146edd
-updated: 2017-05-30T05:42:52.331546642+02:00
+hash: c2e3ccd01a5d9ec28818d75a1af4811675e15fd18a7e7ba5498bbade1395e4a2
+updated: 2017-05-31T01:06:51.370739519+02:00
 imports:
 - name: github.com/airbrake/gobrake
   version: 668876711219e8b0206e2994bf0a59d889c775aa
@@ -63,7 +63,7 @@ imports:
   subpackages:
   - xfs
 - name: github.com/sagikazarmark/healthz
-  version: 941786782b035e1a9a533ca7b8c685792b3cbedb
+  version: 56a37e11d56a482c469e454fdaba6041916e3650
 - name: github.com/sagikazarmark/serverz
   version: 59a44e00a01fbec7f080dc8d0e13366100439f32
 - name: github.com/sagikazarmark/utilz
