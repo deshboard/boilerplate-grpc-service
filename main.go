@@ -18,6 +18,7 @@ import (
 	grpc_logrus "github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus"
 	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
 	grpc_opentracing "github.com/grpc-ecosystem/go-grpc-middleware/tracing/opentracing"
+	grpc_prometheus "github.com/grpc-ecosystem/go-grpc-prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/sagikazarmark/healthz"
 	"github.com/sagikazarmark/serverz"
@@ -62,15 +63,20 @@ func main() {
 	grpcServer := grpc.NewServer(
 		grpc.StreamInterceptor(grpc_middleware.ChainStreamServer(
 			grpc_opentracing.StreamServerInterceptor(grpc_opentracing.WithTracer(tracer)),
+			grpc_prometheus.StreamServerInterceptor,
 			grpc_logrus.StreamServerInterceptor(logger),
 			grpc_recovery.StreamServerInterceptor(),
 		)),
 		grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(
 			grpc_opentracing.UnaryServerInterceptor(grpc_opentracing.WithTracer(tracer)),
+			grpc_prometheus.UnaryServerInterceptor,
 			grpc_logrus.UnaryServerInterceptor(logger),
 			grpc_recovery.UnaryServerInterceptor(),
 		)),
 	)
+
+	grpc_prometheus.Register(grpcServer)
+
 	grpcServerWrapper := &serverz.NamedServer{
 		Server: &serverz.GrpcServer{grpcServer},
 		Name:   "grpc",

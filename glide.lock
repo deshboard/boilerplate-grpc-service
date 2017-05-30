@@ -1,5 +1,5 @@
-hash: 872073ac3f9a1456e523b04ec15c36146069ff4acac941ab657bb63063a39dd6
-updated: 2017-05-30T05:41:13.777285267+02:00
+hash: 6bfb37fa41f5bdd8df82a668b10f8b49eb0df26a23199739671734d99c146edd
+updated: 2017-05-30T05:42:52.331546642+02:00
 imports:
 - name: github.com/airbrake/gobrake
   version: 668876711219e8b0206e2994bf0a59d889c775aa
@@ -28,6 +28,8 @@ imports:
   - tags
   - tracing/opentracing
   - util/metautils
+- name: github.com/grpc-ecosystem/go-grpc-prometheus
+  version: 6b7015e65d366bf3f19b2b2a000a831940f0f7e0
 - name: github.com/kelseyhightower/envconfig
   version: f611eb38b3875cc3bd991ca91c51d06446afa14c
 - name: github.com/matttproud/golang_protobuf_extensions
