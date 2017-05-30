@@ -10,7 +10,7 @@ import (
 )
 
 func createGrpcServer() *grpc.Server {
-	grpcServer := grpc.NewServer(
+	server := grpc.NewServer(
 		grpc.StreamInterceptor(grpc_middleware.ChainStreamServer(
 			grpc_opentracing.StreamServerInterceptor(grpc_opentracing.WithTracer(tracer)),
 			grpc_prometheus.StreamServerInterceptor,
@@ -25,11 +25,11 @@ func createGrpcServer() *grpc.Server {
 		)),
 	)
 
-	grpc_prometheus.Register(grpcServer)
-
-	return grpcServer
+	return server
 }
 
 func bootstrap(server *grpc.Server) {
 	// Register servers here
+
+	grpc_prometheus.Register(server)
 }
