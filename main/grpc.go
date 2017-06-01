@@ -27,9 +27,3 @@ func createGrpcServer() *grpc.Server {
 
 	return server
 }
-
-func bootstrap(server *grpc.Server) {
-	// Register servers here
-
-	grpc_prometheus.Register(server)
-}
