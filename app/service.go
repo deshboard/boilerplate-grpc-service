@@ -1,14 +1,14 @@
 package app
 
-import "github.com/Sirupsen/logrus"
+import "github.com/go-kit/kit/log"
 
 // Service implements the RPC server
 type Service struct {
-	logger logrus.FieldLogger
+	logger log.Logger
 }
 
 // NewService creates a new service object
-func NewService(logger logrus.FieldLogger) *Service {
+func NewService(logger log.Logger) *Service {
 	return &Service{
 		logger: logger,
 	}
