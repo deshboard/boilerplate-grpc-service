@@ -5,13 +5,16 @@ import (
 	"github.com/goph/emperror"
 )
 
-// Service implements the RPC server
+// Service implements the RPC server.
 type Service struct {
-	logger       log.Logger
-	errorHandler emperror.Handler
+	Logger       log.Logger
+	ErrorHandler emperror.Handler
 }
 
-// NewService creates a new service object
-func NewService(logger log.Logger, errorHandler emperror.Handler) *Service {
-	return &Service{logger, errorHandler}
+// NewService creates a new service object.
+func NewService() *Service {
+	return &Service{
+		Logger:       log.NewNopLogger(),
+		ErrorHandler: emperror.NewNullHandler(),
+	}
 }
