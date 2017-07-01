@@ -1,5 +1,5 @@
-hash: ff44a7a0c249655036586685e8cb061d8c4cc2b3ec357ab830d3ddc279be41d5
-updated: 2017-06-28T23:26:31.083818432+02:00
+hash: c251eb8983c42603c0add6f6c861586e1549c5b2b699f9370af84a1ec3d2162e
+updated: 2017-07-02T00:46:59.322605161+02:00
 imports:
 - name: github.com/beorn7/perks
   version: 4c0e84591b9aa9e6dcfdf3e020114cd81f89d5f9
@@ -61,7 +61,6 @@ imports:
   version: c5b7fccd204277076155f10851dad72b76a49317
   subpackages:
   - prometheus
-  - prometheus/promhttp
 - name: github.com/prometheus/client_model
   version: 6f3806018612930941127f2a7c6c453ba2c527d2
   subpackages:
@@ -76,6 +75,8 @@ imports:
   version: 822d4a1f8edcbcbc71e8d1fd6527b12331a6d0ad
   subpackages:
   - xfs
+- name: github.com/uber-go/tally
+  version: 88e9c75b0cfc84139ad1bae3b7f123786cfd0770
 - name: golang.org/x/net
   version: 5f8847ae0d0e90b6a9dc8148e7ad616874625171
   subpackages:
