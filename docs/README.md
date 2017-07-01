@@ -6,6 +6,7 @@ This folder contains documentation for the service. It mainly includes informati
 ## Table of Contents
 
 - [Requirements](#requirements)
+- [Framework overview](#framework-overview)
 - [Setup](setup.md)
 - [Testing](testing.md)
 
@@ -22,9 +23,14 @@ This folder contains documentation for the service. It mainly includes informati
 
 These are not hard requirements of the project.
 
-- [Godotenv](https://github.com/joho/godotenv) (strongly recommended)
+- [Godotenv](https://github.com/joho/godotenv) (recommended for easier env setup)
 - [Reflex](https://github.com/cespare/reflex) (required for watching code changes)
 - [Docker Compose](https://docs.docker.com/compose/)
 
 
-Please make sure that you have the latest version of the above softwares installed.
+Please make sure that you have the latest versions installed.
+
+
+## Framework overview
+
+This project does not use any third-party framework (except ones required by the application logic), but relies heavily on the standard library and separate third-party components. The integration layer for these components and the main execution logic can be found in the [main/](../main/) directory.
