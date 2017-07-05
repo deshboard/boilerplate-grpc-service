@@ -15,7 +15,7 @@ func newServer(appCtx *application) serverz.Server {
 	serviceChecker := healthz.NewTCPChecker(appCtx.config.ServiceAddr, healthz.WithTCPTimeout(2*time.Second))
 	appCtx.healthCollector.RegisterChecker(healthz.LivenessCheck, serviceChecker)
 
-	server := createGrpcServer(appCtx.tracer)
+	server := createGrpcServer(appCtx)
 
 	// Register servers here
 
