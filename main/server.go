@@ -22,7 +22,7 @@ func newServer(appCtx *application) serverz.Server {
 	grpc_prometheus.Register(server)
 
 	return &named.Server{
-		Server:     &_grpc.Server{server},
+		Server:     &_grpc.Server{Server: server},
 		ServerName: "grpc",
 	}
 }
