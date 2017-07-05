@@ -1,5 +1,5 @@
-hash: c251eb8983c42603c0add6f6c861586e1549c5b2b699f9370af84a1ec3d2162e
-updated: 2017-07-02T00:49:06.506329692+02:00
+hash: e80e3028e8ca681d9177f777958a5eabd48a20c457e59318ac6f9c42ff1a0a41
+updated: 2017-07-06T01:14:10.6504758+02:00
 imports:
 - name: github.com/beorn7/perks
   version: 4c0e84591b9aa9e6dcfdf3e020114cd81f89d5f9
@@ -28,11 +28,13 @@ imports:
 - name: github.com/goph/log
   version: a2cdc6838c8fc6808cb719ce2eefbfb45315da53
 - name: github.com/goph/serverz
-  version: e266e0deaa569bd7b2691a221d5ae1e725412004
+  version: 5156db1eb65ea803c86941fe5170edfa65d76d6d
   subpackages:
   - grpc
+  - internal/errors
+  - named
 - name: github.com/goph/stdlib
-  version: fbfe82e22f9b889be712b0d1428050181323f0d1
+  version: e9f467be97d46b5f96731ac084856cf4dc9925d5
   subpackages:
   - errors
   - ext
@@ -121,7 +123,7 @@ imports:
   - transport
 testImports:
 - name: github.com/DATA-DOG/godog
-  version: 92fbee719c9593813b24a6ef042bcad40324ede4
+  version: 70f777599da0f5de682b8848d356611c1738b695
   subpackages:
   - colors
   - gherkin
