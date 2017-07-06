@@ -1,5 +1,5 @@
-hash: 33cfd8b87e82bea8509d9f0b8e5c59b730127bb50ec948fca911e4d731cd7591
-updated: 2017-07-06T01:31:01.119805106+02:00
+hash: e80e3028e8ca681d9177f777958a5eabd48a20c457e59318ac6f9c42ff1a0a41
+updated: 2017-07-06T02:13:37.69037722+02:00
 imports:
 - name: github.com/beorn7/perks
   version: 4c0e84591b9aa9e6dcfdf3e020114cd81f89d5f9
@@ -28,7 +28,7 @@ imports:
 - name: github.com/goph/log
   version: a2cdc6838c8fc6808cb719ce2eefbfb45315da53
 - name: github.com/goph/serverz
-  version: 5278f820ec3b7991964364ece5ac54c9368326d8
+  version: 896eb4b27239569d94ff9a23527f960c06388c38
   subpackages:
   - grpc
   - internal/errors
