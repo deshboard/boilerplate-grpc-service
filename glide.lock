@@ -1,5 +1,5 @@
-hash: e80e3028e8ca681d9177f777958a5eabd48a20c457e59318ac6f9c42ff1a0a41
-updated: 2017-07-06T02:13:37.69037722+02:00
+hash: ddbeb82d3ff3c4ab75316c59d4b30ce5e5782ffefa19a802a1c9fa891789a0fd
+updated: 2017-07-12T13:48:32.502359859+02:00
 imports:
 - name: github.com/beorn7/perks
   version: 4c0e84591b9aa9e6dcfdf3e020114cd81f89d5f9
@@ -22,7 +22,9 @@ imports:
   - proto
   - ptypes/any
 - name: github.com/goph/emperror
-  version: c6b285b0497b09cc78d555f89eefc8815f2d4c45
+  version: 9a1f931558972dfd6867293a0d27e3556f8727a0
+  subpackages:
+  - internal
 - name: github.com/goph/healthz
   version: 571dac1216f2f4f920458b3b93f5835ec1bd35c6
 - name: github.com/goph/log
@@ -34,7 +36,7 @@ imports:
   - internal/errors
   - named
 - name: github.com/goph/stdlib
-  version: e9f467be97d46b5f96731ac084856cf4dc9925d5
+  version: 5b726a57f399a0fcae1040c8d928330b8aac992d
   subpackages:
   - errors
   - ext
