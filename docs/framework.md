@@ -12,34 +12,43 @@ This project does not use any third-party framework (except ones required by the
 
 In order to effectively use metrics, you need to choose a metrics reporting mechanism. Common mechanisms are push-based (eg. StatsD) and pull-based (eg. Prometheus). In order to support both, this project comes with [Tally](https://github.com/uber-go/tally) installed, which is a metric reporting abstraction.
 
-As a first step, you need to return a reporter implementation in [metrics.go](../main/metrics.go):
+All you need to do is chosing a reporter implementation in [metrics.go](../main/metrics.go):
 
 ``` go
 package main
 
-import promreporter "github.com/uber-go/tally/prometheus"
+import (
+	"io"
+	"net/http"
 
-// newMetricsReporter returns one of tally.StatsReporter and tally.CachedStatsReporter.
-func newMetricsReporter(config *configuration) interface{} {
-	return promreporter.NewReporter(promreporter.Options{})
+	"github.com/uber-go/tally"
+	promreporter "github.com/uber-go/tally/prometheus"
+)
+
+// newMetrics returns a new tally.Scope used as a root scope.
+func newMetrics(config *configuration) interface {
+	tally.Scope
+	io.Closer
+} {
+	reporter := promreporter.NewReporter(promreporter.Options{})
+
+	options := tally.ScopeOptions{
+		CachedReporter: reporter,
+	}
+
+	scope, closer := tally.NewRootScope(options, MetricsReportInterval)
+
+	return struct {
+		tally.Scope
+		io.Closer
+		http.Handler
+	}{
+		Scope:   scope,
+		Closer:  closer,
+		Handler: reporter.HTTPHandler(),
+	}
 }
+
 ```
 
 In this case the health server implementation detects that this is a pull-based reporter and automatically exposes it under the `/metrics` endpoint.
-
-The next step is to create a root scope and start using Tally:
-
-``` go
-	scopeOptions := tally.ScopeOptions{
-		Prefix: "my_service",
-		Tags:   map[string]string{},
-	}
-
-    // We support both types of reporters, so check it here.
-	if mReporter, ok := metricsReporter.(tally.CachedStatsReporter); ok {
-		scopeOptions.CachedReporter = mReporter
-		scopeOptions.Separator = promreporter.DefaultSeparator
-	}
-
-	scope, closer := tally.NewRootScope(scopeOptions, 1*time.Second)
-```
