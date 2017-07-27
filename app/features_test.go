@@ -3,6 +3,7 @@
 package app
 
 import (
+	stdnet "net"
 	"time"
 
 	"github.com/DATA-DOG/godog"
@@ -18,6 +19,7 @@ func FeatureContext(s *godog.Suite) {
 	client, _ := grpc.Dial("", grpc.WithInsecure(), grpc.WithDialer(func(s string, t time.Duration) (stdnet.Conn, error) { return dialer.Dial() }))
 
 	// Add steps here
+	client.Close() // Remove this line
 
 	go server.Serve(listener)
 }
