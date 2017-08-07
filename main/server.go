@@ -5,7 +5,7 @@ import (
 
 	"github.com/goph/healthz"
 	"github.com/goph/serverz/aio"
-	_grpc "github.com/goph/serverz/grpc"
+	"github.com/goph/serverz/grpc"
 	"github.com/goph/stdlib/net"
 	grpc_prometheus "github.com/grpc-ecosystem/go-grpc-prometheus"
 )
@@ -22,7 +22,7 @@ func newServer(appCtx *application) *aio.Server {
 	grpc_prometheus.Register(server)
 
 	return &aio.Server{
-		Server: &_grpc.Server{Server: server},
+		Server: &grpc.Server{Server: server},
 		Name:   "grpc",
 		Addr:   net.ResolveVirtualAddr("tcp", appCtx.config.ServiceAddr),
 	}
