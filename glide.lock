@@ -1,5 +1,5 @@
 hash: dd32149b396f331242265c3ffb1dc05bf1d1945b19eaa21368ee8759b6e5d1bb
-updated: 2017-08-07T23:11:44.225751581+02:00
+updated: 2017-08-10T00:18:15.801618239+02:00
 imports:
 - name: github.com/beorn7/perks
   version: 4c0e84591b9aa9e6dcfdf3e020114cd81f89d5f9
@@ -17,7 +17,7 @@ imports:
 - name: github.com/go-stack/stack
   version: 817915b46b97fd7bb80e8ab6b69f01a53ac3eebf
 - name: github.com/golang/protobuf
-  version: 748d386b5c1ea99658fd69fe9f03991ce86a90c1
+  version: 2bba0603135d7d7f5cb73b2125beeda19c09f4ef
   subpackages:
   - proto
   - ptypes/any
@@ -27,8 +27,6 @@ imports:
   - internal
 - name: github.com/goph/healthz
   version: 571dac1216f2f4f920458b3b93f5835ec1bd35c6
-- name: github.com/goph/log
-  version: a2cdc6838c8fc6808cb719ce2eefbfb45315da53
 - name: github.com/goph/serverz
   version: a02fe1dc5dd783c14af882be7d3446332abdfc21
   subpackages:
@@ -95,22 +93,14 @@ imports:
   subpackages:
   - prometheus
 - name: golang.org/x/net
-  version: f5079bd7f6f74e23c4d65efa0f4ce14cbd6a3c0f
+  version: e90d6d0afc4c315a0d87a568ae68577cc15149a0
   subpackages:
   - context
   - http2
   - http2/hpack
-  - idna
   - internal/timeseries
   - lex/httplex
   - trace
-- name: golang.org/x/text
-  version: 3bd178b88a8180be2df394a1fbb81313916f0e7b
-  subpackages:
-  - secure/bidirule
-  - transform
-  - unicode/bidi
-  - unicode/norm
 - name: google.golang.org/genproto
   version: 09f6ed296fc66555a25fe4ce95173148778dfa85
   subpackages:
