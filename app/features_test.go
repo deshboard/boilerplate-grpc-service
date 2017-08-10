@@ -1,6 +1,6 @@
 // +build acceptance
 
-package app
+package app_test
 
 import (
 	stdnet "net"
@@ -11,15 +11,17 @@ import (
 	"google.golang.org/grpc"
 )
 
-func FeatureContext(s *godog.Suite) {
-	addr := net.ResolveVirtualAddr("pipe", "pipe")
-	listener, dialer := net.PipeListen(addr)
+func init() {
+	FeatureContext = func(s *godog.Suite) {
+		addr := net.ResolveVirtualAddr("pipe", "pipe")
+		listener, dialer := net.PipeListen(addr)
 
-	server := grpc.NewServer()
-	client, _ := grpc.Dial("", grpc.WithInsecure(), grpc.WithDialer(func(s string, t time.Duration) (stdnet.Conn, error) { return dialer.Dial() }))
+		server := grpc.NewServer()
+		client, _ := grpc.Dial("", grpc.WithInsecure(), grpc.WithDialer(func(s string, t time.Duration) (stdnet.Conn, error) { return dialer.Dial() }))
 
-	// Add steps here
-	client.Close() // Remove this line
+		// Add steps here
+		client.Close() // Remove this line
 
-	go server.Serve(listener)
+		go server.Serve(listener)
+	}
 }
