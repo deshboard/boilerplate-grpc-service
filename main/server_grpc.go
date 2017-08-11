@@ -10,8 +10,8 @@ import (
 	grpc_prometheus "github.com/grpc-ecosystem/go-grpc-prometheus"
 )
 
-// newHTTPServer creates the main server instance for the service.
-func newHTTPServer(appCtx *application) *aio.Server {
+// newGrpcServer creates the main server instance for the service.
+func newGrpcServer(appCtx *application) *aio.Server {
 	serviceChecker := healthz.NewTCPChecker(appCtx.config.ServiceAddr, healthz.WithTCPTimeout(2*time.Second))
 	appCtx.healthCollector.RegisterChecker(healthz.LivenessCheck, serviceChecker)
 
