@@ -1,5 +1,5 @@
-hash: dd32149b396f331242265c3ffb1dc05bf1d1945b19eaa21368ee8759b6e5d1bb
-updated: 2017-08-10T00:24:12.159907586+02:00
+hash: 7d0fe17f9efdaf61a8dfa572cb3f1123144dbf1ec8e9ba7f971c53339dabaab3
+updated: 2017-08-11T22:23:52.179288093+02:00
 imports:
 - name: github.com/beorn7/perks
   version: 4c0e84591b9aa9e6dcfdf3e020114cd81f89d5f9
@@ -28,7 +28,7 @@ imports:
 - name: github.com/goph/healthz
   version: 571dac1216f2f4f920458b3b93f5835ec1bd35c6
 - name: github.com/goph/serverz
-  version: a02fe1dc5dd783c14af882be7d3446332abdfc21
+  version: 0db668bdb36032ac5e0154fba5b912fed99c2835
   subpackages:
   - aio
   - grpc
@@ -103,7 +103,7 @@ imports:
   - lex/httplex
   - trace
 - name: golang.org/x/text
-  version: 3bd178b88a8180be2df394a1fbb81313916f0e7b
+  version: b19bf474d317b857955b12035d2c5acb57ce8b01
   subpackages:
   - secure/bidirule
   - transform
