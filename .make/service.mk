@@ -1,3 +1,3 @@
 # Service specific Makefile
 
-include etc/proto.mk
+include .make/proto.mk
