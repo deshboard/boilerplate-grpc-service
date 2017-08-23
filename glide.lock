@@ -1,5 +1,5 @@
-hash: 7d0fe17f9efdaf61a8dfa572cb3f1123144dbf1ec8e9ba7f971c53339dabaab3
-updated: 2017-08-11T22:23:52.179288093+02:00
+hash: 4b61d9bcc4437962183cd666b62e5a5ef2d158054559bc0583f6ca0ced70c7dd
+updated: 2017-08-23T05:49:58.331633182+02:00
 imports:
 - name: github.com/beorn7/perks
   version: 4c0e84591b9aa9e6dcfdf3e020114cd81f89d5f9
@@ -22,9 +22,9 @@ imports:
   - proto
   - ptypes/any
 - name: github.com/goph/emperror
-  version: 9a1f931558972dfd6867293a0d27e3556f8727a0
+  version: ffb3cac8d464cd350271fc706011883f25077412
   subpackages:
-  - internal
+  - internal/errors
 - name: github.com/goph/healthz
   version: 571dac1216f2f4f920458b3b93f5835ec1bd35c6
 - name: github.com/goph/serverz
@@ -36,7 +36,7 @@ imports:
   - internal/errors
   - internal/ext
 - name: github.com/goph/stdlib
-  version: ebad8d8b5b9843c6104e35acfee6f7b2d73503b2
+  version: 7ade954fe887bc3afdc34edb2e8d6a43261499a7
   subpackages:
   - errors
   - expvar
@@ -69,6 +69,8 @@ imports:
   subpackages:
   - ext
   - log
+- name: github.com/pkg/errors
+  version: 645ef00459ed84a119197bfb8d8205042c6df63d
 - name: github.com/prometheus/client_golang
   version: c5b7fccd204277076155f10851dad72b76a49317
   subpackages:
@@ -103,7 +105,7 @@ imports:
   - lex/httplex
   - trace
 - name: golang.org/x/text
-  version: b19bf474d317b857955b12035d2c5acb57ce8b01
+  version: e56139fd9c5bc7244c76116c68e500765bb6db6b
   subpackages:
   - secure/bidirule
   - transform
@@ -114,9 +116,10 @@ imports:
   subpackages:
   - googleapis/rpc/status
 - name: google.golang.org/grpc
-  version: b8669c35455183da6d5c474ea6e72fbf55183274
+  version: b3ddf786825de56a4178401b7e174ee332173b66
   subpackages:
   - codes
+  - connectivity
   - credentials
   - grpclb/grpc_lb_v1
   - grpclog
