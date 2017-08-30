@@ -1,5 +1,5 @@
-hash: 151be08bf5d2ff021f921d3b77d0dad2a78f019ffa8d74c4dd26edadea6fae70
-updated: 2017-08-28T17:32:44.08205153+02:00
+hash: d6bc98479d4b3ce9a93a53da1eb80ab505fbecf87b4739df7900e113eee3ec76
+updated: 2017-08-30T23:58:06.459731729+02:00
 imports:
 - name: github.com/beorn7/perks
   version: 4c0e84591b9aa9e6dcfdf3e020114cd81f89d5f9
@@ -20,11 +20,14 @@ imports:
   version: 2bba0603135d7d7f5cb73b2125beeda19c09f4ef
   subpackages:
   - proto
+  - ptypes
   - ptypes/any
+  - ptypes/duration
+  - ptypes/timestamp
 - name: github.com/goph/emperror
-  version: ffb3cac8d464cd350271fc706011883f25077412
+  version: 84194a32041fe2a0816fabf3fe54b0cc6156e8fc
   subpackages:
-  - internal/errors
+  - log
 - name: github.com/goph/healthz
   version: 571dac1216f2f4f920458b3b93f5835ec1bd35c6
 - name: github.com/goph/serverz
@@ -36,18 +39,16 @@ imports:
   - internal/errors
   - internal/ext
 - name: github.com/goph/stdlib
-  version: 470bc5eafd200f81b9d493acf180343ebc91ba29
+  version: bdfa619d30dc9afa78145c326ae0d9ec8e4edcc0
   subpackages:
-  - errors
   - expvar
   - ext
-  - log
   - net
   - net/http
   - net/http/pprof
   - x/net/trace
 - name: github.com/grpc-ecosystem/go-grpc-middleware
-  version: f63a7dfb64c138bd93d5c5b896d8b33c4b08e000
+  version: 645b33ed7ba8739747bf2df55d0349d4bba2e7f6
   subpackages:
   - recovery
   - tags
@@ -106,7 +107,7 @@ imports:
   - lex/httplex
   - trace
 - name: golang.org/x/text
-  version: ac87088df8ef557f1e32cd00ed0b6fbc3f7ddafb
+  version: 18c65dde6afd36dbc39197ca72008895b8dfbfb6
   subpackages:
   - secure/bidirule
   - transform
@@ -117,12 +118,12 @@ imports:
   subpackages:
   - googleapis/rpc/status
 - name: google.golang.org/grpc
-  version: b3ddf786825de56a4178401b7e174ee332173b66
+  version: f92cdcd7dcdc69e81b2d7b338479a19a8723cfa3
   subpackages:
   - codes
   - connectivity
   - credentials
-  - grpclb/grpc_lb_v1
+  - grpclb/grpc_lb_v1/messages
   - grpclog
   - internal
   - keepalive
