@@ -4,14 +4,13 @@ import (
 	"time"
 
 	"github.com/goph/healthz"
-	"github.com/goph/serverz/aio"
+	"github.com/goph/serverz"
 	"github.com/goph/serverz/grpc"
-	"github.com/goph/stdlib/net"
 	grpc_prometheus "github.com/grpc-ecosystem/go-grpc-prometheus"
 )
 
 // newGrpcServer creates the main server instance for the service.
-func newGrpcServer(appCtx *application) *aio.Server {
+func newGrpcServer(appCtx *application) serverz.Server {
 	serviceChecker := healthz.NewTCPChecker(appCtx.config.GrpcAddr, healthz.WithTCPTimeout(2*time.Second))
 	appCtx.healthCollector.RegisterChecker(healthz.LivenessCheck, serviceChecker)
 
@@ -21,9 +20,10 @@ func newGrpcServer(appCtx *application) *aio.Server {
 
 	grpc_prometheus.Register(server)
 
-	return &aio.Server{
+	return &serverz.AppServer{
 		Server: &grpc.Server{Server: server},
 		Name:   "grpc",
-		Addr:   net.ResolveVirtualAddr("tcp", appCtx.config.GrpcAddr),
+		Addr:   serverz.NewAddr("tcp", appCtx.config.GrpcAddr),
+		Logger: appCtx.logger,
 	}
 }
