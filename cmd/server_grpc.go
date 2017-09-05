@@ -6,7 +6,7 @@ import (
 	"github.com/goph/healthz"
 	"github.com/goph/serverz"
 	"github.com/goph/serverz/grpc"
-	grpc_prometheus "github.com/grpc-ecosystem/go-grpc-prometheus"
+	"github.com/grpc-ecosystem/go-grpc-prometheus"
 )
 
 // newGrpcServer creates the main server instance for the service.
