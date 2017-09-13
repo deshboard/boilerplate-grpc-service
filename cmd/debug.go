@@ -6,6 +6,6 @@ import (
 )
 
 // registerDebugRoutes allows to register custom routes in the debug server.
-func registerDebugRoutes(a *application, h http.HandlerAcceptor) {
+func registerDebugRoutes(app *application, h http.HandlerAcceptor) {
 	h.Handle("/metrics", promhttp.Handler())
 }
