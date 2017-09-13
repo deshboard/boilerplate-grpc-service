@@ -10,11 +10,11 @@ import (
 )
 
 // newGrpcServer creates the main server instance for the service.
-func newGrpcServer(appCtx *application) serverz.Server {
-	serviceChecker := healthz.NewTCPChecker(appCtx.config.GrpcAddr, healthz.WithTCPTimeout(2*time.Second))
-	appCtx.healthCollector.RegisterChecker(healthz.LivenessCheck, serviceChecker)
+func newGrpcServer(a *application) serverz.Server {
+	serviceChecker := healthz.NewTCPChecker(a.config.GrpcAddr, healthz.WithTCPTimeout(2*time.Second))
+	a.healthCollector.RegisterChecker(healthz.LivenessCheck, serviceChecker)
 
-	server := createGrpcServer(appCtx)
+	server := createGrpcServer(a)
 
 	// Register servers here
 
@@ -23,7 +23,7 @@ func newGrpcServer(appCtx *application) serverz.Server {
 	return &serverz.AppServer{
 		Server: &grpc.Server{Server: server},
 		Name:   "grpc",
-		Addr:   serverz.NewAddr("tcp", appCtx.config.GrpcAddr),
-		Logger: appCtx.logger,
+		Addr:   serverz.NewAddr("tcp", a.config.GrpcAddr),
+		Logger: a.logger,
 	}
 }
