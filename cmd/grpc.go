@@ -39,7 +39,7 @@ func createGrpcServer(app *application) *grpc.Server {
 	)
 
 	if app.config.GrpcEnableReflection {
-		level.Debug(app.logger).Log("msg", "grpc reflection enabled")
+		level.Debug(logger).Log("msg", "reflection enabled")
 
 		reflection.Register(server)
 	}
