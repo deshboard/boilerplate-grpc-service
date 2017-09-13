@@ -31,8 +31,8 @@ func (c *configuration) flags(flags *flag.FlagSet) {
 	}
 
 	// Load flags into configuration
-	flags.StringVar(&c.DebugAddr, "debug.addr", defaultAddr+":10000", "Debug and health check address.")
-	flags.DurationVar(&c.ShutdownTimeout, "shutdown", 2*time.Second, "Shutdown timeout.")
+	flags.StringVar(&c.DebugAddr, "debug.addr", defaultAddr+":10000", "Debug and health check address")
+	flags.DurationVar(&c.ShutdownTimeout, "shutdown", 2*time.Second, "Timeout for graceful shutdown")
 
 	flags.StringVar(&c.GrpcAddr, "grpc.addr", defaultAddr+":8000", "gRPC service address")
 }
