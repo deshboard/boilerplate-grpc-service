@@ -9,6 +9,7 @@ import (
 	"github.com/grpc-ecosystem/go-grpc-prometheus"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/grpclog"
+	"google.golang.org/grpc/reflection"
 )
 
 func createGrpcServer(app *application) *grpc.Server {
@@ -36,6 +37,12 @@ func createGrpcServer(app *application) *grpc.Server {
 			grpc_recovery.UnaryServerInterceptor(),
 		)),
 	)
+
+	if app.config.GrpcEnableReflection {
+		level.Debug(app.logger).Log("msg", "grpc reflection enabled")
+
+		reflection.Register(server)
+	}
 
 	return server
 }
