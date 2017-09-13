@@ -12,11 +12,16 @@ import (
 )
 
 func createGrpcServer(app *application) *grpc.Server {
+	logger := log.With(
+		app.logger,
+		"server", "grpc",
+	)
+
 	// TODO: separate log levels
 	grpclog.SetLoggerV2(grpclog.NewLoggerV2(
-		log.NewStdlibAdapter(level.Info(app.logger)),
-		log.NewStdlibAdapter(level.Warn(app.logger)),
-		log.NewStdlibAdapter(level.Error(app.logger)),
+		log.NewStdlibAdapter(level.Info(logger)),
+		log.NewStdlibAdapter(level.Warn(logger)),
+		log.NewStdlibAdapter(level.Error(logger)),
 	))
 
 	server := grpc.NewServer(
