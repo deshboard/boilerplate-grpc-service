@@ -1,5 +1,5 @@
-hash: bbb1ec35f4764cdb08adc749a249b9ab62afddb5734d59ed572ff64997d8ad6d
-updated: 2017-09-06T13:40:57.299091351+02:00
+hash: 69f73d5e6a5e4a6dd7052147d23a170b76f4b8e9feac2f0fc0d83bc9e063c0a4
+updated: 2017-09-13T18:17:47.50098195+02:00
 imports:
 - name: github.com/beorn7/perks
   version: 4c0e84591b9aa9e6dcfdf3e020114cd81f89d5f9
@@ -30,7 +30,7 @@ imports:
 - name: github.com/goph/healthz
   version: 571dac1216f2f4f920458b3b93f5835ec1bd35c6
 - name: github.com/goph/serverz
-  version: a7e07fc73d8dddc4892648b8f990b518233bcbad
+  version: e55582cb1f4eaef30fc1454deeb8474f19bc47cd
   subpackages:
   - grpc
   - internal
