@@ -1,5 +1,5 @@
-hash: 69f73d5e6a5e4a6dd7052147d23a170b76f4b8e9feac2f0fc0d83bc9e063c0a4
-updated: 2017-09-13T18:17:47.50098195+02:00
+hash: 916ba78905b5f91151c1a9614a4bbdef5bca588065378726ac7f280413163955
+updated: 2017-10-01T18:45:15.461929726+02:00
 imports:
 - name: github.com/beorn7/perks
   version: 4c0e84591b9aa9e6dcfdf3e020114cd81f89d5f9
@@ -16,9 +16,10 @@ imports:
 - name: github.com/go-stack/stack
   version: 817915b46b97fd7bb80e8ab6b69f01a53ac3eebf
 - name: github.com/golang/protobuf
-  version: 2bba0603135d7d7f5cb73b2125beeda19c09f4ef
+  version: 130e6b02ab059e7b717a096f397c5b60111cae74
   subpackages:
   - proto
+  - protoc-gen-go/descriptor
   - ptypes
   - ptypes/any
   - ptypes/duration
@@ -26,6 +27,11 @@ imports:
 - name: github.com/goph/emperror
   version: 84194a32041fe2a0816fabf3fe54b0cc6156e8fc
   subpackages:
+  - log
+- name: github.com/goph/fw
+  version: 2bc09f77bf61044378259469dc5f131a25911f0f
+  subpackages:
+  - error
   - log
 - name: github.com/goph/healthz
   version: 571dac1216f2f4f920458b3b93f5835ec1bd35c6
@@ -38,7 +44,6 @@ imports:
   version: 5703fbf5f4f844082ae11de7e6e28deb61dba669
   subpackages:
   - expvar
-  - ext
   - net
   - net/http
   - net/http/pprof
@@ -53,7 +58,7 @@ imports:
 - name: github.com/grpc-ecosystem/go-grpc-prometheus
   version: 6b7015e65d366bf3f19b2b2a000a831940f0f7e0
 - name: github.com/joho/godotenv
-  version: 726cc8b906e3d31c70a9671c90a13716a8d3f50d
+  version: a79fa1e548e2c689c241d10173efd51e5d689d5b
 - name: github.com/kelseyhightower/envconfig
   version: f611eb38b3875cc3bd991ca91c51d06446afa14c
 - name: github.com/kr/logfmt
@@ -79,13 +84,13 @@ imports:
   subpackages:
   - go
 - name: github.com/prometheus/common
-  version: 61f87aac8082fa8c3c5655c7608d7478d46ac2ad
+  version: 49fee292b27bfff7f354ee0f64e1bc4850462edf
   subpackages:
   - expfmt
   - internal/bitbucket.org/ww/goautoneg
   - model
 - name: github.com/prometheus/procfs
-  version: e645f4e5aaa8506fc71d6edbc5c4ff02c04c46f2
+  version: a1dba9ce8baed984a2495b658c82687f8157b98f
   subpackages:
   - xfs
 - name: golang.org/x/net
@@ -122,6 +127,8 @@ imports:
   - metadata
   - naming
   - peer
+  - reflection
+  - reflection/grpc_reflection_v1alpha
   - stats
   - status
   - tap

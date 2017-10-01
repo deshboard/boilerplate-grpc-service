@@ -24,6 +24,6 @@ func newGrpcServer(app *application) serverz.Server {
 		Server: &grpc.Server{Server: server},
 		Name:   "grpc",
 		Addr:   serverz.NewAddr("tcp", app.config.GrpcAddr),
-		Logger: app.logger,
+		Logger: app.Logger(),
 	}
 }

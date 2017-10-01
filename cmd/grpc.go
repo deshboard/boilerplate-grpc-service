@@ -14,7 +14,7 @@ import (
 
 func createGrpcServer(app *application) *grpc.Server {
 	logger := log.With(
-		app.logger,
+		app.Logger(),
 		"server", "grpc",
 	)
 
