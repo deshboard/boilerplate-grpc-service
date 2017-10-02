@@ -1,5 +1,5 @@
-hash: 916ba78905b5f91151c1a9614a4bbdef5bca588065378726ac7f280413163955
-updated: 2017-10-01T18:45:15.461929726+02:00
+hash: 798fab8928df454576a571de5eaf4bac18745c602351081eb54d995d975199dd
+updated: 2017-10-02T05:17:20.206988158+02:00
 imports:
 - name: github.com/beorn7/perks
   version: 4c0e84591b9aa9e6dcfdf3e020114cd81f89d5f9
@@ -29,7 +29,7 @@ imports:
   subpackages:
   - log
 - name: github.com/goph/fw
-  version: 2bc09f77bf61044378259469dc5f131a25911f0f
+  version: a0e08b00d044188ea1e6e42eaff36432ca4b7633
   subpackages:
   - error
   - log

@@ -27,12 +27,12 @@ func createGrpcServer(app *application) *grpc.Server {
 
 	server := grpc.NewServer(
 		grpc.StreamInterceptor(grpc_middleware.ChainStreamServer(
-			grpc_opentracing.StreamServerInterceptor(grpc_opentracing.WithTracer(app.tracer)),
+			grpc_opentracing.StreamServerInterceptor(grpc_opentracing.WithTracer(app.Tracer())),
 			grpc_prometheus.StreamServerInterceptor,
 			grpc_recovery.StreamServerInterceptor(),
 		)),
 		grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(
-			grpc_opentracing.UnaryServerInterceptor(grpc_opentracing.WithTracer(app.tracer)),
+			grpc_opentracing.UnaryServerInterceptor(grpc_opentracing.WithTracer(app.Tracer())),
 			grpc_prometheus.UnaryServerInterceptor,
 			grpc_recovery.UnaryServerInterceptor(),
 		)),
