@@ -45,7 +45,14 @@ func main() {
 			NewDebugConfig,
 			debug.NewServer,
 			debug.NewHealthCollector,
+		),
+		fx.Invoke(grpc_prometheus.Register, RegisterPrometheusHandler),
+		fx.Invoke(func(collector healthz.Collector) {
+			collector.RegisterChecker(healthz.ReadinessCheck, status)
+		}),
+		fx.Extract(&ext),
 
+		fx.Provide(
 			// gRPC server
 			NewService,
 			NewGrpcConfig,
@@ -55,11 +62,6 @@ func main() {
 
 			tracing.NewTracer,
 		),
-		fx.Invoke(grpc_prometheus.Register, RegisterPrometheusHandler),
-		fx.Invoke(func(collector healthz.Collector) {
-			collector.RegisterChecker(healthz.ReadinessCheck, status)
-		}),
-		fx.Extract(&ext),
 	)
 
 	err := app.Err()
