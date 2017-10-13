@@ -1,34 +1,64 @@
 package main
 
 import (
-	"github.com/goph/fw"
-	"github.com/goph/fw/log"
+	"github.com/deshboard/boilerplate-grpc-service/app"
+	"github.com/go-kit/kit/log"
+	"github.com/goph/emperror"
+	"github.com/goph/fxt/debug"
+	fxgrpc "github.com/goph/fxt/grpc"
+	"github.com/grpc-ecosystem/go-grpc-middleware"
+	"github.com/grpc-ecosystem/go-grpc-middleware/recovery"
+	"github.com/grpc-ecosystem/go-grpc-middleware/tracing/opentracing"
+	"github.com/grpc-ecosystem/go-grpc-prometheus"
+	"github.com/opentracing/opentracing-go"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"go.uber.org/dig"
+	"google.golang.org/grpc"
 )
 
-// bootstrap bootstraps the application.
-func bootstrap() (*application, error) {
-	return newApplication(
-		configProvider,
-		applicationProvider,
-		healthProvider,
+// ServiceParams provides a set of dependencies for the service constructor.
+type ServiceParams struct {
+	dig.In
+
+	Logger       log.Logger       `optional:"true"`
+	ErrorHandler emperror.Handler `optional:"true"`
+}
+
+// NewService constructs a new service instance.
+func NewService(params ServiceParams) *app.Service {
+	return app.NewService(
+		app.Logger(params.Logger),
+		app.ErrorHandler(params.ErrorHandler),
 	)
 }
 
-// applicationProvider provides an fw.Application instance.
-func applicationProvider(app *application) error {
-	a := fw.NewApplication(
-		fw.Logger(log.NewLogger(
-			log.FormatString(app.config.LogFormat),
-			log.Debug(app.config.Debug),
-			log.With(
-				"environment", app.config.Environment,
-				"service", ServiceName,
-				"tag", LogTag,
-			),
-		)),
+// NewGrpcConfig creates a grpc config.
+func NewGrpcConfig(config *Config) *fxgrpc.Config {
+	c := fxgrpc.NewConfig(config.GrpcAddr)
+	c.ReflectionEnabled = config.GrpcEnableReflection
+
+	return c
+}
+
+// NewStreamInterceptor creates a new gRPC server stream interceptor.
+func NewStreamInterceptor(tracer opentracing.Tracer) grpc.StreamServerInterceptor {
+	return grpc_middleware.ChainStreamServer(
+		grpc_opentracing.StreamServerInterceptor(grpc_opentracing.WithTracer(tracer)),
+		grpc_prometheus.StreamServerInterceptor,
+		grpc_recovery.StreamServerInterceptor(),
 	)
+}
 
-	app.Application = a
+// NewUnaryInterceptor creates a new gRPC server unary interceptor.
+func NewUnaryInterceptor(tracer opentracing.Tracer) grpc.UnaryServerInterceptor {
+	return grpc_middleware.ChainUnaryServer(
+		grpc_opentracing.UnaryServerInterceptor(grpc_opentracing.WithTracer(tracer)),
+		grpc_prometheus.UnaryServerInterceptor,
+		grpc_recovery.UnaryServerInterceptor(),
+	)
+}
 
-	return nil
+// RegisterPrometheusHandler registers the Prometheus metrics handler in the debug server.
+func RegisterPrometheusHandler(handler debug.Handler) {
+	handler.Handle("/metrics", promhttp.Handler())
 }
