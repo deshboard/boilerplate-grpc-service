@@ -1,14 +1,10 @@
-hash: ad9107daaeb2e42d7a6219752984d7a0e556191ecf748dca211f5cfb97567966
-updated: 2017-10-13T20:09:30.385388207+02:00
+hash: 787c35b11aae5d51458551f0c8786efb3cd7aa59630e1e5829211b81aeb607b1
+updated: 2017-10-15T13:30:13.951307725+02:00
 imports:
 - name: github.com/beorn7/perks
   version: 4c0e84591b9aa9e6dcfdf3e020114cd81f89d5f9
   subpackages:
   - quantile
-- name: github.com/deshboard/boilerplate-service
-  version: e021852251a8103b513dbb159f1938e14016d964
-  subpackages:
-  - app
 - name: github.com/go-kit/kit
   version: 4dc7be5d2d12881735283bcab7352178e190fc71
   subpackages:
@@ -32,7 +28,7 @@ imports:
   subpackages:
   - log
 - name: github.com/goph/fxt
-  version: b8ff97c205237c7823f56373bb5d234bf2500754
+  version: caed0d051cafaa5e612d576f71e1d202cce0b60e
   subpackages:
   - debug
   - errors
@@ -41,16 +37,6 @@ imports:
   - tracing
 - name: github.com/goph/healthz
   version: 571dac1216f2f4f920458b3b93f5835ec1bd35c6
-- name: github.com/goph/serverz
-  version: e55582cb1f4eaef30fc1454deeb8474f19bc47cd
-  subpackages:
-  - grpc
-  - internal
-- name: github.com/goph/stdlib
-  version: 5703fbf5f4f844082ae11de7e6e28deb61dba669
-  subpackages:
-  - net
-  - net/http
 - name: github.com/grpc-ecosystem/go-grpc-middleware
   version: 645b33ed7ba8739747bf2df55d0349d4bba2e7f6
   subpackages:
@@ -60,8 +46,6 @@ imports:
   - util/metautils
 - name: github.com/grpc-ecosystem/go-grpc-prometheus
   version: 6b7015e65d366bf3f19b2b2a000a831940f0f7e0
-- name: github.com/grpc/grpc-go
-  version: f92cdcd7dcdc69e81b2d7b338479a19a8723cfa3
 - name: github.com/joho/godotenv
   version: a79fa1e548e2c689c241d10173efd51e5d689d5b
 - name: github.com/kelseyhightower/envconfig
@@ -158,3 +142,7 @@ testImports:
   subpackages:
   - colors
   - gherkin
+- name: github.com/goph/stdlib
+  version: 5703fbf5f4f844082ae11de7e6e28deb61dba669
+  subpackages:
+  - net
