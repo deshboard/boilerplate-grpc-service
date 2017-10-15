@@ -72,7 +72,7 @@ func main() {
 		panic(err)
 	}
 
-	// Close resources even when there is an error
+	// Close resources when the application stops running
 	defer ext.Closer.Close()
 
 	// Register error handler to recover from panics

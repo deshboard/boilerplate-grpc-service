@@ -24,7 +24,7 @@ type ServiceParams struct {
 	ErrorHandler emperror.Handler `optional:"true"`
 }
 
-// NewService constructs a new service instance.
+// NewService returns a new service instance.
 func NewService(params ServiceParams) *app.Service {
 	return app.NewService(
 		app.Logger(params.Logger),
@@ -34,7 +34,14 @@ func NewService(params ServiceParams) *app.Service {
 
 // NewGrpcConfig creates a grpc config.
 func NewGrpcConfig(config *Config) *fxgrpc.Config {
-	c := fxgrpc.NewConfig(config.GrpcAddr)
+	addr := config.GrpcAddr
+
+	// Listen on loopback interface in development mode
+	if config.Environment == "development" && addr[0] == ':' {
+		addr = "127.0.0.1" + addr
+	}
+
+	c := fxgrpc.NewConfig(addr)
 	c.ReflectionEnabled = config.GrpcEnableReflection
 
 	return c
