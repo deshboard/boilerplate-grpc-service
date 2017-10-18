@@ -12,6 +12,7 @@ import (
 	"github.com/goph/fxt/errors"
 	"github.com/goph/fxt/grpc"
 	fxlog "github.com/goph/fxt/log"
+	"github.com/goph/fxt/metrics/prometheus"
 	"github.com/goph/fxt/tracing"
 	"github.com/goph/healthz"
 	"github.com/grpc-ecosystem/go-grpc-prometheus"
@@ -55,8 +56,6 @@ func main() {
 			// gRPC server
 			NewService,
 			NewGrpcConfig,
-			NewStreamInterceptor,
-			NewUnaryInterceptor,
 			grpc.NewServer,
 
 			tracing.NewTracer,
@@ -64,7 +63,7 @@ func main() {
 
 		// Make sure to register this invoke function as the last,
 		// so all registered gRPC services are exposed in metrics.
-		fx.Invoke(grpc_prometheus.Register, RegisterPrometheusHandler),
+		fx.Invoke(grpc_prometheus.Register, prometheus.RegisterHandler),
 	)
 
 	err := app.Err()
