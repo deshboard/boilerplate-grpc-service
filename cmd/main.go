@@ -8,14 +8,15 @@ import (
 	"github.com/go-kit/kit/log/level"
 	"github.com/goph/emperror"
 	"github.com/goph/fxt"
-	"github.com/goph/fxt/debug"
-	"github.com/goph/fxt/errors"
-	"github.com/goph/fxt/grpc"
+	fxdebug "github.com/goph/fxt/debug"
+	fxerrors "github.com/goph/fxt/errors"
+	fxgrpc "github.com/goph/fxt/grpc"
 	fxlog "github.com/goph/fxt/log"
-	"github.com/goph/fxt/metrics/prometheus"
-	"github.com/goph/fxt/tracing"
+	fxprometheus "github.com/goph/fxt/metrics/prometheus"
+	fxtracing "github.com/goph/fxt/tracing"
 	"github.com/goph/healthz"
 	"github.com/grpc-ecosystem/go-grpc-prometheus"
+	"github.com/pkg/errors"
 	"go.uber.org/fx"
 )
 
@@ -27,8 +28,8 @@ func main() {
 		Logger       log.Logger
 		ErrorHandler emperror.Handler
 
-		DebugErr debug.Err
-		GrpcErr  grpc.Err
+		DebugErr fxdebug.Err
+		GrpcErr  fxgrpc.Err
 	}
 
 	app := fx.New(
@@ -40,12 +41,12 @@ func main() {
 			// Log and error handling
 			NewLoggerConfig,
 			fxlog.NewLogger,
-			errors.NewHandler,
+			fxerrors.NewHandler,
 
 			// Debug server
 			NewDebugConfig,
-			debug.NewServer,
-			debug.NewHealthCollector,
+			fxdebug.NewServer,
+			fxdebug.NewHealthCollector,
 		),
 		fx.Invoke(func(collector healthz.Collector) {
 			collector.RegisterChecker(healthz.ReadinessCheck, status)
@@ -56,14 +57,14 @@ func main() {
 			// gRPC server
 			NewService,
 			NewGrpcConfig,
-			grpc.NewServer,
+			fxgrpc.NewServer,
 
-			tracing.NewTracer,
+			fxtracing.NewTracer,
 		),
 
 		// Make sure to register this invoke function as the last,
 		// so all registered gRPC services are exposed in metrics.
-		fx.Invoke(grpc_prometheus.Register, prometheus.RegisterHandler),
+		fx.Invoke(grpc_prometheus.Register, fxprometheus.RegisterHandler),
 	)
 
 	err := app.Err()
@@ -95,13 +96,13 @@ func main() {
 
 	case err := <-ext.DebugErr:
 		if err != nil {
-			err = emperror.WithStack(emperror.WithMessage(err, "debug server crashed"))
+			err = errors.Wrap(err, "debug server crashed")
 			ext.ErrorHandler.Handle(err)
 		}
 
 	case err := <-ext.GrpcErr:
 		if err != nil {
-			err = emperror.WithStack(emperror.WithMessage(err, "grpc server crashed"))
+			err = errors.Wrap(err, "grpc server crashed")
 			ext.ErrorHandler.Handle(err)
 		}
 	}

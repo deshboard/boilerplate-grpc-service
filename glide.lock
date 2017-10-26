@@ -1,5 +1,5 @@
-hash: 2dc79606151493c12905694317b522356352e804e6dc802de320d23127b53812
-updated: 2017-10-18T23:35:06.729114049+02:00
+hash: acecd72f2675ed85560c693f3e2ff7ace3c2168660aa34492e351f9647397469
+updated: 2017-10-26T13:16:17.229000954+02:00
 imports:
 - name: github.com/beorn7/perks
   version: 4c0e84591b9aa9e6dcfdf3e020114cd81f89d5f9
@@ -24,11 +24,11 @@ imports:
   - ptypes/duration
   - ptypes/timestamp
 - name: github.com/goph/emperror
-  version: 84194a32041fe2a0816fabf3fe54b0cc6156e8fc
+  version: af661f9c2206596e1c04354d0d7d60cd9b7691d5
   subpackages:
   - log
 - name: github.com/goph/fxt
-  version: c162a07519f3cc5bf7241a91bf5aa72fac95d838
+  version: 14a49380464fc2dd32d7f2999d8de9ce8ff73540
   subpackages:
   - debug
   - errors
@@ -65,7 +65,7 @@ imports:
 - name: github.com/pkg/errors
   version: 645ef00459ed84a119197bfb8d8205042c6df63d
 - name: github.com/prometheus/client_golang
-  version: c5b7fccd204277076155f10851dad72b76a49317
+  version: 967789050ba94deca04a5e84cce8ad472ce313c1
   subpackages:
   - prometheus
   - prometheus/promhttp
@@ -117,7 +117,7 @@ imports:
   subpackages:
   - googleapis/rpc/status
 - name: google.golang.org/grpc
-  version: f7bf885db0b7479a537ec317c6e48ce53145f3db
+  version: 61d37c5d657a47e4404fd6823bd598341a2595de
   subpackages:
   - balancer
   - codes
