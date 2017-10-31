@@ -17,7 +17,7 @@ func FeatureContext(s *godog.Suite) {
 	client, _ := grpc.Dial("", grpc.WithInsecure(), grpc.WithDialer(func(s string, t time.Duration) (stdnet.Conn, error) { return dialer.Dial() }))
 
 	// Add steps here
-	client.Close() // Remove this line
+	func(s *godog.Suite, server *grpc.Server, client *grpc.ClientConn) {}(s, server, client)
 
 	go server.Serve(listener)
 }
