@@ -3,12 +3,10 @@
 package app_test
 
 import (
-	stdnet "net"
-	"time"
+	"net"
 
 	"github.com/DATA-DOG/godog"
 	"github.com/deshboard/boilerplate-grpc-service/test"
-	"github.com/goph/stdlib/net"
 	"google.golang.org/grpc"
 )
 
@@ -18,14 +16,20 @@ func init() {
 }
 
 func FeatureContext(s *godog.Suite) {
-	addr := net.ResolveVirtualAddr("pipe", "pipe")
-	listener, dialer := net.PipeListen(addr)
+	lis, err := net.Listen("tcp", ":0")
+	if err != nil {
+		panic(err)
+	}
+
+	client, err := grpc.Dial(lis.Addr().String(), grpc.WithInsecure())
+	if err != nil {
+		panic(err)
+	}
 
 	server := grpc.NewServer()
-	client, _ := grpc.Dial("", grpc.WithInsecure(), grpc.WithDialer(func(s string, t time.Duration) (stdnet.Conn, error) { return dialer.Dial() }))
 
 	// Add steps here
 	func(s *godog.Suite, server *grpc.Server, client *grpc.ClientConn) {}(s, server, client)
 
-	go server.Serve(listener)
+	go server.Serve(lis)
 }
