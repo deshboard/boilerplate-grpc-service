@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/deshboard/boilerplate-grpc-service/app"
+	"github.com/deshboard/boilerplate-grpc-service/pkg/app"
 	"github.com/go-kit/kit/log"
 	"github.com/goph/emperror"
 	fxgrpc "github.com/goph/fxt/grpc"

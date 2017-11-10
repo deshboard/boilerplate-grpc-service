@@ -1,13 +1,21 @@
-package acceptance
+// +build acceptance
+
+package app_test
 
 import (
 	stdnet "net"
 	"time"
 
 	"github.com/DATA-DOG/godog"
+	"github.com/deshboard/boilerplate-grpc-service/test"
 	"github.com/goph/stdlib/net"
 	"google.golang.org/grpc"
 )
+
+func init() {
+	test.RegisterFeaturePath("../features")
+	test.RegisterFeatureContext(FeatureContext)
+}
 
 func FeatureContext(s *godog.Suite) {
 	addr := net.ResolveVirtualAddr("pipe", "pipe")
