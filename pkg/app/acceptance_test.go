@@ -3,11 +3,9 @@
 package app_test
 
 import (
-	"net"
-
 	"github.com/DATA-DOG/godog"
 	"github.com/deshboard/boilerplate-grpc-service/test"
-	"google.golang.org/grpc"
+	"github.com/deshboard/boilerplate-grpc-service/test/acceptance"
 )
 
 func init() {
@@ -16,20 +14,9 @@ func init() {
 }
 
 func FeatureContext(s *godog.Suite) {
-	lis, err := net.Listen("tcp", "127.0.0.1:0")
-	if err != nil {
-		panic(err)
-	}
+	grpcFeatureContext := new(acceptance.GrpcFeatureContext)
 
-	client, err := grpc.Dial(lis.Addr().String(), grpc.WithInsecure())
-	if err != nil {
-		panic(err)
-	}
-
-	server := grpc.NewServer()
+	grpcFeatureContext.FeatureContext(s)
 
 	// Add steps here
-	func(s *godog.Suite, server *grpc.Server, client *grpc.ClientConn) {}(s, server, client)
-
-	go server.Serve(lis)
 }
