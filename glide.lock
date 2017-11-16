@@ -1,10 +1,15 @@
-hash: 260aeee0cc53c5728ef6bd003d06c0c120a75f416bdbd3536729f8aeb2d7e7fe
-updated: 2017-10-31T01:07:46.074215+01:00
+hash: 7214058e8c1fe1bac6f3d27248e75d257b282ee193ee128775f7d0863e490fb8
+updated: 2017-11-16T15:33:58.938649726+01:00
 imports:
 - name: github.com/beorn7/perks
   version: 4c0e84591b9aa9e6dcfdf3e020114cd81f89d5f9
   subpackages:
   - quantile
+- name: github.com/DATA-DOG/godog
+  version: 4dc98b0e2b130c3c9d06868a050320e5b310d3e7
+  subpackages:
+  - colors
+  - gherkin
 - name: github.com/go-kit/kit
   version: 4dc7be5d2d12881735283bcab7352178e190fc71
   subpackages:
@@ -28,7 +33,7 @@ imports:
   subpackages:
   - log
 - name: github.com/goph/fxt
-  version: 6654931ac99bb2bcb9eb20e107ff5f42a9cfa64e
+  version: 3a07bbb8ec0e51abc0f79f17363ae86c44a1837f
   subpackages:
   - debug
   - errors
@@ -65,7 +70,7 @@ imports:
 - name: github.com/pkg/errors
   version: 645ef00459ed84a119197bfb8d8205042c6df63d
 - name: github.com/prometheus/client_golang
-  version: 967789050ba94deca04a5e84cce8ad472ce313c1
+  version: c5b7fccd204277076155f10851dad72b76a49317
   subpackages:
   - prometheus
   - prometheus/promhttp
@@ -84,9 +89,9 @@ imports:
   subpackages:
   - xfs
 - name: go.uber.org/atomic
-  version: 4e336646b2ef9fc6e47be8e21594178f98e5ebcf
+  version: 8474b86a5a6f79c443ce4b2992817ff32cf208b8
 - name: go.uber.org/dig
-  version: f57771ac8fdc4c484fcd111a700659c6282e1509
+  version: a752dd97d0e0718ba977eaaca94a23a4d28b7a08
 - name: go.uber.org/fx
   version: a47f1657ce04f3d82db1ef230ffbb292b15af0ee
   subpackages:
@@ -117,7 +122,7 @@ imports:
   subpackages:
   - googleapis/rpc/status
 - name: google.golang.org/grpc
-  version: 61d37c5d657a47e4404fd6823bd598341a2595de
+  version: 401e0e00e4bb830a10496d64cd95e068c5bf50de
   subpackages:
   - balancer
   - codes
@@ -138,12 +143,15 @@ imports:
   - tap
   - transport
 testImports:
-- name: github.com/DATA-DOG/godog
-  version: 4dc98b0e2b130c3c9d06868a050320e5b310d3e7
+- name: github.com/davecgh/go-spew
+  version: 6d212800a42e8ab5c146b8ace3490ee17e5225f9
   subpackages:
-  - colors
-  - gherkin
-- name: github.com/goph/stdlib
-  version: 5703fbf5f4f844082ae11de7e6e28deb61dba669
+  - spew
+- name: github.com/pmezard/go-difflib
+  version: d8ed2627bdf02c080bf22230dbb337003b7aba2d
   subpackages:
-  - net
+  - difflib
+- name: github.com/stretchr/testify
+  version: 69483b4bd14f5845b5a1e55bca19e954e827f1d0
+  subpackages:
+  - assert
