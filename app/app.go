@@ -37,7 +37,7 @@ type ApplicationInfo struct {
 
 // Context is a set of dependencies of the application extracted from the container.
 type Context struct {
-	Config       *Config
+	Config       Config
 	Closer       fxt.Closer
 	Logger       log.Logger
 	ErrorHandler emperror.Handler
@@ -49,19 +49,16 @@ type Context struct {
 }
 
 // NewApp creates a new application.
-func NewApp(config *Config, info *ApplicationInfo) *Application {
+func NewApp(config Config, info ApplicationInfo) *Application {
 	context := new(Context)
 
 	constructors := []interface{}{
-		func() *Config {
+		func() Config {
 			return config
 		},
-	}
-
-	if info != nil {
-		constructors = append(constructors, func() *ApplicationInfo {
+		func() ApplicationInfo {
 			return info
-		})
+		},
 	}
 
 	return &Application{

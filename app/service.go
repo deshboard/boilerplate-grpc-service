@@ -31,7 +31,7 @@ func NewService(params ServiceParams) *app.Service {
 }
 
 // NewGrpcConfig creates a grpc config.
-func NewGrpcConfig(config *Config, tracer opentracing.Tracer) *fxgrpc.Config {
+func NewGrpcConfig(config Config, tracer opentracing.Tracer) *fxgrpc.Config {
 	addr := config.GrpcAddr
 
 	// Listen on loopback interface in development mode
