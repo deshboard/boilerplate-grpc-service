@@ -1,8 +1,6 @@
 package main
 
-import (
-	"github.com/deshboard/boilerplate-grpc-service/app"
-)
+import "github.com/deshboard/boilerplate-grpc-service/app"
 
 const FriendlyServiceName = app.FriendlyServiceName
 

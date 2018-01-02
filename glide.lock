@@ -1,5 +1,5 @@
-hash: 23915e6cecaf147bb2955d05714bbf3fb15b195d26a83c0d1fd196b4550fd209
-updated: 2017-12-22T01:53:59.163817907+01:00
+hash: 6bbfdc420f8ec12339612be5f81a6c5e749ba197c8a452d06f6a79e8ae79f42a
+updated: 2018-01-02T15:59:49.466989996+01:00
 imports:
 - name: github.com/beorn7/perks
   version: 4c0e84591b9aa9e6dcfdf3e020114cd81f89d5f9
@@ -46,7 +46,7 @@ imports:
 - name: github.com/goph/healthz
   version: 571dac1216f2f4f920458b3b93f5835ec1bd35c6
 - name: github.com/goph/nest
-  version: 00316c4ef4e1e69203faedd025ad5e25cd3e6948
+  version: 9150a9a1d4c9e4d9165726d9d748b2f0a485ad95
 - name: github.com/grpc-ecosystem/go-grpc-middleware
   version: 645b33ed7ba8739747bf2df55d0349d4bba2e7f6
   subpackages:
@@ -85,7 +85,7 @@ imports:
   - ext
   - log
 - name: github.com/pelletier/go-toml
-  version: b8b5e7696574464b2f9bf303a7b37781bb52889f
+  version: 0131db6d737cfbbfb678f8b7d92e55e27ce46224
 - name: github.com/pkg/errors
   version: 645ef00459ed84a119197bfb8d8205042c6df63d
 - name: github.com/prometheus/client_golang
@@ -108,7 +108,7 @@ imports:
   subpackages:
   - xfs
 - name: github.com/spf13/afero
-  version: 8d919cbe7e2627e417f3e45c3c0e489a5b7e2536
+  version: 57afd63c68602b63ed976de00dd066ccb3c319db
   subpackages:
   - mem
 - name: github.com/spf13/cast
@@ -144,7 +144,7 @@ imports:
   - lex/httplex
   - trace
 - name: golang.org/x/sys
-  version: d818ba11af4465e00c1998bd3f8a55603b422290
+  version: 83801418e1b59fb1880e363299581ee543af32ca
   subpackages:
   - unix
 - name: golang.org/x/text
