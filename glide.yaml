@@ -7,7 +7,7 @@ import:
 - package: github.com/joho/godotenv
   version: ^1.2.0
 - package: github.com/goph/fxt
-  version: ~0.6.1
+  version: ~0.7.0
 - package: github.com/grpc-ecosystem/go-grpc-middleware
 - package: github.com/grpc-ecosystem/go-grpc-prometheus
   version: ^1.1.0
