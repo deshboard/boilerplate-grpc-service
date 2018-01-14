@@ -11,10 +11,8 @@ import (
 	fxerrors "github.com/goph/fxt/errors"
 	fxgrpc "github.com/goph/fxt/grpc"
 	fxlog "github.com/goph/fxt/log"
-	fxprometheus "github.com/goph/fxt/metrics/prometheus"
 	fxtracing "github.com/goph/fxt/tracing"
 	"github.com/goph/healthz"
-	"github.com/grpc-ecosystem/go-grpc-prometheus"
 	"github.com/pkg/errors"
 	"go.uber.org/fx"
 )
@@ -88,10 +86,6 @@ func NewApp(config Config, info ApplicationInfo) *Application {
 
 				fxtracing.NewTracer,
 			),
-
-			// Make sure to register this invoke function as the last,
-			// so all registered gRPC services are exposed in metrics.
-			fx.Invoke(grpc_prometheus.Register, fxprometheus.RegisterHandler),
 		),
 		context: context,
 	}

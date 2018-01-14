@@ -8,7 +8,6 @@ import (
 	"github.com/grpc-ecosystem/go-grpc-middleware"
 	"github.com/grpc-ecosystem/go-grpc-middleware/recovery"
 	"github.com/grpc-ecosystem/go-grpc-middleware/tracing/opentracing"
-	"github.com/grpc-ecosystem/go-grpc-prometheus"
 	"github.com/opentracing/opentracing-go"
 	"go.uber.org/dig"
 	"google.golang.org/grpc"
@@ -44,12 +43,10 @@ func NewGrpcConfig(config Config, tracer opentracing.Tracer) *fxgrpc.Config {
 	c.Options = []grpc.ServerOption{
 		grpc_middleware.WithStreamServerChain(
 			grpc_opentracing.StreamServerInterceptor(grpc_opentracing.WithTracer(tracer)),
-			grpc_prometheus.StreamServerInterceptor,
 			grpc_recovery.StreamServerInterceptor(),
 		),
 		grpc_middleware.WithUnaryServerChain(
 			grpc_opentracing.UnaryServerInterceptor(grpc_opentracing.WithTracer(tracer)),
-			grpc_prometheus.UnaryServerInterceptor,
 			grpc_recovery.UnaryServerInterceptor(),
 		),
 	}
