@@ -3,7 +3,7 @@
 package app
 
 import (
-	"github.com/deshboard/boilerplate-service/pkg/app"
+	"github.com/deshboard/boilerplate-grpc-service/pkg/app"
 	"github.com/goph/fxt"
 	"github.com/goph/fxt/dev"
 	"github.com/goph/fxt/test"
