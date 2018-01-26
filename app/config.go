@@ -27,5 +27,5 @@ type Config struct {
 	GrpcAddr string `flag:"" split_words:"true" default:":8000" usage:"gRPC service address"`
 
 	// Enable the gRPC reflection service.
-	GrpcEnableReflection bool `split_words:"true"`
+	GrpcEnableReflection bool `env:"" split_words:"true"`
 }
