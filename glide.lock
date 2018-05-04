@@ -1,5 +1,5 @@
-hash: 2d7b79c4e9fc98af66d9bd99ab3eaa349ad4264ba41cee0a9aa2ce5d2e3de834
-updated: 2018-03-18T11:59:39.126452+01:00
+hash: f0f42a9539a84118679e273334376cb7d670771fc5fc33ab6f86d86e4b11518d
+updated: 2018-05-05T00:29:41.430612+02:00
 imports:
 - name: github.com/DATA-DOG/godog
   version: 0371765570d36374bef4ab9f62ed0491f0862a3c
@@ -9,7 +9,7 @@ imports:
 - name: github.com/fsnotify/fsnotify
   version: c2828203cd70a50dcccfb2761f8b1f8ceef9a8e9
 - name: github.com/go-kit/kit
-  version: 4dc7be5d2d12881735283bcab7352178e190fc71
+  version: ca4112baa34cb55091301bdc13b1420a122b1b9e
   subpackages:
   - log
   - log/level
@@ -22,7 +22,7 @@ imports:
   subpackages:
   - log
 - name: github.com/goph/fxt
-  version: b50b05f6619192ab5c978ca96f62925fe0a251b8
+  version: e4233504d34871be95c12a649cae84ce87276c5d
   subpackages:
   - debug
   - dev
@@ -42,6 +42,7 @@ imports:
   subpackages:
   - hcl/ast
   - hcl/parser
+  - hcl/printer
   - hcl/scanner
   - hcl/strconv
   - hcl/token
@@ -69,22 +70,22 @@ imports:
 - name: github.com/spf13/jwalterweatherman
   version: 7c0cea34c8ece3fbeb2b27ab9b59511d360fb394
 - name: github.com/spf13/pflag
-  version: e57e3eeb33f795204c1ca35f56c44f83227c6e66
+  version: 583c0c0531f06d5278b7d917446061adc344b5cd
 - name: github.com/spf13/viper
-  version: 25b30aa063fc18e48662b86996252eabdcf2f0c7
+  version: b5e8006cbee93ec955a89ab31e0e3ce3204f3736
 - name: github.com/stretchr/testify
   version: 12b6f73e6084dad08a7c6e575284b177ecafbc71
   subpackages:
   - assert
   - require
 - name: go.uber.org/atomic
-  version: 8474b86a5a6f79c443ce4b2992817ff32cf208b8
+  version: 1ea20fb1cbb1cc08cbd0d913a96dead89aa18289
 - name: go.uber.org/dig
   version: d100de9c8cc8358591507951141bc107713ba671
   subpackages:
   - internal/digreflect
 - name: go.uber.org/fx
-  version: 35bf66c87beb2c8ec1a68cf00b54542e2d169c0b
+  version: ed7e99834c0a7099c6cb6434fe5a7b007ac00db9
   subpackages:
   - fxtest
   - internal/fxlog
@@ -99,7 +100,7 @@ imports:
   - internal/timeseries
   - trace
 - name: golang.org/x/sys
-  version: c4489faa6e5ab84c0ef40d6ee878f7a030281f0f
+  version: 9f7170bcd8e9f4d3691c06401119c46a769a1e03
   subpackages:
   - unix
 - name: golang.org/x/text
@@ -108,7 +109,7 @@ imports:
   - transform
   - unicode/norm
 - name: gopkg.in/yaml.v2
-  version: 287cf08546ab5e7e37d55a84f7ed3fd1db036de5
+  version: 53feefa2559fb8dfa8d81baad31be332c97d6c77
 testImports:
 - name: github.com/davecgh/go-spew
   version: adab96458c51a58dc1783b3335dcce5461522e75
