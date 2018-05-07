@@ -3,7 +3,6 @@
 package app
 
 import (
-	"github.com/deshboard/boilerplate-service/pkg/app"
 	"github.com/goph/fxt/dev"
 	"github.com/goph/fxt/test"
 	fxacceptance "github.com/goph/fxt/test/acceptance"
@@ -32,7 +31,6 @@ func AcceptanceRunnerFactory() (test.Runner, error) {
 	)
 
 	acceptanceRunner.RegisterFeatureContext(appContext.BeforeFeatureContext)
-	app.RegisterSuite(acceptanceRunner)
 	acceptanceRunner.RegisterFeatureContext(appContext.AfterFeatureContext)
 
 	return acceptanceRunner, nil
