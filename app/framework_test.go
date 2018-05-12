@@ -3,8 +3,8 @@ package app
 import (
 	"testing"
 
-	fxdebug "github.com/goph/fxt/debug"
-	fxlog "github.com/goph/fxt/log"
+	"github.com/goph/fxt/debug"
+	"github.com/goph/fxt/log"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

@@ -8,15 +8,15 @@ import (
 
 	"github.com/goph/fxt/dev"
 	"github.com/goph/fxt/log"
-	"github.com/goph/fxt/test/nettest"
+	"github.com/goph/fxt/testing/nettest"
 	"github.com/goph/nest"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
 func init() {
-	dev.LoadEnvFromFile("../.env.test")
-	dev.LoadEnvFromFile("../.env.dist")
+	fxdev.LoadEnvFromFile("../.env.test")
+	fxdev.LoadEnvFromFile("../.env.dist")
 }
 
 func newConfig() (Config, error) {
@@ -40,8 +40,8 @@ func newConfig() (Config, error) {
 func TestConfig(t *testing.T) {
 	defer func() {
 		os.Clearenv()
-		dev.LoadEnvFromFile("../.env.test")
-		dev.LoadEnvFromFile("../.env.dist")
+		fxdev.LoadEnvFromFile("../.env.test")
+		fxdev.LoadEnvFromFile("../.env.dist")
 	}()
 
 	tests := map[string]struct {
@@ -61,7 +61,7 @@ func TestConfig(t *testing.T) {
 			Config{
 				Environment:     "test",
 				Debug:           false,
-				LogFormat:       log.LogfmtFormat.String(),
+				LogFormat:       fxlog.LogfmtFormat.String(),
 				DebugAddr:       ":10001",
 				ShutdownTimeout: 10 * time.Second,
 			},
@@ -73,7 +73,7 @@ func TestConfig(t *testing.T) {
 			Config{
 				Environment:     "production",
 				Debug:           false,
-				LogFormat:       log.JsonFormat.String(),
+				LogFormat:       fxlog.JsonFormat.String(),
 				DebugAddr:       ":10000",
 				ShutdownTimeout: 15 * time.Second,
 			},

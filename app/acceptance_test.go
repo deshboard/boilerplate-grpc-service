@@ -4,20 +4,20 @@ package app
 
 import (
 	"github.com/goph/fxt/dev"
-	"github.com/goph/fxt/test"
-	fxacceptance "github.com/goph/fxt/test/acceptance"
+	"github.com/goph/fxt/testing"
+	fxacceptance "github.com/goph/fxt/testing/acceptance"
 	"go.uber.org/fx"
 )
 
 func init() {
-	dev.LoadEnvFromFile("../.env.test")
-	dev.LoadEnvFromFile("../.env.dist")
+	fxdev.LoadEnvFromFile("../.env.test")
+	fxdev.LoadEnvFromFile("../.env.dist")
 
-	runnerFactoryRegistry.Register(test.RunnerFactoryFunc(AcceptanceRunnerFactory))
+	runnerFactoryRegistry.Register(fxtesting.RunnerFactoryFunc(AcceptanceRunnerFactory))
 }
 
-func AcceptanceRunnerFactory() (test.Runner, error) {
-	acceptanceRunner := test.NewGodogRunner()
+func AcceptanceRunnerFactory() (fxtesting.Runner, error) {
+	acceptanceRunner := fxtesting.NewGodogRunner()
 
 	config, err := newConfig()
 	if err != nil {

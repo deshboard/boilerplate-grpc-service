@@ -1,5 +1,5 @@
-hash: f0f42a9539a84118679e273334376cb7d670771fc5fc33ab6f86d86e4b11518d
-updated: 2018-05-05T00:29:41.430612+02:00
+hash: 1c095c26539898123fff46c2c6e423af52354bd733277645df309a6df976d0bd
+updated: 2018-05-12T21:52:38.349071+02:00
 imports:
 - name: github.com/DATA-DOG/godog
   version: 0371765570d36374bef4ab9f62ed0491f0862a3c
@@ -9,7 +9,7 @@ imports:
 - name: github.com/fsnotify/fsnotify
   version: c2828203cd70a50dcccfb2761f8b1f8ceef9a8e9
 - name: github.com/go-kit/kit
-  version: ca4112baa34cb55091301bdc13b1420a122b1b9e
+  version: 4dc7be5d2d12881735283bcab7352178e190fc71
   subpackages:
   - log
   - log/level
@@ -22,17 +22,18 @@ imports:
   subpackages:
   - log
 - name: github.com/goph/fxt
-  version: e4233504d34871be95c12a649cae84ce87276c5d
+  version: eb299b7150bc0e7c19cbabe277643526e4c37e17
   subpackages:
+  - app/default
   - debug
   - dev
   - errors
   - log
-  - test
-  - test/acceptance
-  - test/fxtest
-  - test/is
-  - test/nettest
+  - testing
+  - testing/acceptance
+  - testing/fxtest
+  - testing/is
+  - testing/nettest
 - name: github.com/goph/healthz
   version: 571dac1216f2f4f920458b3b93f5835ec1bd35c6
 - name: github.com/goph/nest
