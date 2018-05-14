@@ -1,8 +1,8 @@
 package app
 
 import (
-	fxdebug "github.com/goph/fxt/debug"
-	fxlog "github.com/goph/fxt/log"
+	"github.com/goph/fxt/debug"
+	"github.com/goph/fxt/log"
 )
 
 // NewLoggerConfig creates a logger config for the logger constructor.

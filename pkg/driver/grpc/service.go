@@ -1,4 +1,4 @@
-package app
+package grpc
 
 import (
 	"github.com/go-kit/kit/log"

@@ -10,8 +10,8 @@ import (
 
 // Load environment configuration in development environment.
 func init() {
-	dev.LoadEnvFromFile("../.env")
-	dev.LoadEnvFromFile("../.env.dist")
+	fxdev.LoadEnvFromFile("../.env")
+	fxdev.LoadEnvFromFile("../.env.dist")
 
 	// Load defaults for info variables
 	if Version == "" {

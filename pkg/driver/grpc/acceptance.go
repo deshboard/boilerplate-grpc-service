@@ -1,14 +1,14 @@
 // +build acceptance
 
-package app
+package grpc
 
 import (
 	"github.com/DATA-DOG/godog"
-	"github.com/goph/fxt/test"
+	"github.com/goph/fxt/testing"
 )
 
-func RegisterSuite(runner *test.GodogRunner) {
-	runner.RegisterFeaturePath("../features")
+func RegisterSuite(runner *fxtesting.GodogRunner) {
+	runner.RegisterFeaturePath("../../features")
 	runner.RegisterFeatureContext(FeatureContext)
 }
 

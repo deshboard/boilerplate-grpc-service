@@ -8,15 +8,15 @@ import (
 
 	"github.com/goph/fxt/dev"
 	"github.com/goph/fxt/log"
-	"github.com/goph/fxt/test/nettest"
+	"github.com/goph/fxt/testing/nettest"
 	"github.com/goph/nest"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
 func init() {
-	dev.LoadEnvFromFile("../.env.test")
-	dev.LoadEnvFromFile("../.env.dist")
+	fxdev.LoadEnvFromFile("../.env.test")
+	fxdev.LoadEnvFromFile("../.env.dist")
 }
 
 func newConfig() (Config, error) {
@@ -42,8 +42,8 @@ func newConfig() (Config, error) {
 func TestConfig(t *testing.T) {
 	defer func() {
 		os.Clearenv()
-		dev.LoadEnvFromFile("../.env.test")
-		dev.LoadEnvFromFile("../.env.dist")
+		fxdev.LoadEnvFromFile("../.env.test")
+		fxdev.LoadEnvFromFile("../.env.dist")
 	}()
 
 	tests := map[string]struct {
@@ -62,12 +62,11 @@ func TestConfig(t *testing.T) {
 			[]string{"service", "--debug-addr", ":10001", "--shutdown-timeout", "10s", "--grpc-addr", ":8001"},
 			Config{},
 			Config{
-				Environment:          "test",
-				Debug:                false,
-				LogFormat:            log.LogfmtFormat.String(),
-				DebugAddr:            ":10001",
-				ShutdownTimeout:      10 * time.Second,
-				GrpcAddr:             ":8001",
+				Environment:     "test",
+				Debug:           false,
+				LogFormat:       fxlog.LogfmtFormat.String(),
+				DebugAddr:       ":10001",
+				ShutdownTimeout: 10 * time.Second,GrpcAddr:             ":8001",
 				GrpcEnableReflection: true,
 			},
 		},
@@ -76,12 +75,11 @@ func TestConfig(t *testing.T) {
 			[]string{},
 			Config{},
 			Config{
-				Environment:          "production",
-				Debug:                false,
-				LogFormat:            log.JsonFormat.String(),
-				DebugAddr:            ":10000",
-				ShutdownTimeout:      15 * time.Second,
-				GrpcAddr:             ":8000",
+				Environment:     "production",
+				Debug:           false,
+				LogFormat:       fxlog.JsonFormat.String(),
+				DebugAddr:       ":10000",
+				ShutdownTimeout: 15 * time.Second,GrpcAddr:             ":8000",
 				GrpcEnableReflection: false,
 			},
 		},

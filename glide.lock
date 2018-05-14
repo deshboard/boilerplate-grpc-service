@@ -1,5 +1,5 @@
-hash: 0327e17d4de27c8c578aec074a26e2d88d14267c4ac001960ecacd4e7e87870c
-updated: 2018-03-18T12:13:22.62742+01:00
+hash: ad799befdf514c85e2803c2ca5c868ca880f0382d7ceaa54941e9c98ff6a144c
+updated: 2018-05-14T10:53:42.226061+02:00
 imports:
 - name: github.com/DATA-DOG/godog
   version: 0371765570d36374bef4ab9f62ed0491f0862a3c
@@ -18,7 +18,7 @@ imports:
 - name: github.com/go-stack/stack
   version: 817915b46b97fd7bb80e8ab6b69f01a53ac3eebf
 - name: github.com/golang/protobuf
-  version: 1e59b77b52bf8e4b449a57e6f79f21226d571845
+  version: b4deda0973fb4c70b50d226b1af49f3da59f5265
   subpackages:
   - proto
   - protoc-gen-go/descriptor
@@ -31,19 +31,21 @@ imports:
   subpackages:
   - log
 - name: github.com/goph/fxt
-  version: b50b05f6619192ab5c978ca96f62925fe0a251b8
+  version: eb299b7150bc0e7c19cbabe277643526e4c37e17
   subpackages:
+  - app/default
+  - app/grpc
   - debug
   - dev
   - errors
   - grpc
   - log
-  - test
-  - test/acceptance
-  - test/fxtest
-  - test/is
-  - test/nettest
-  - tracing
+  - testing
+  - testing/acceptance
+  - testing/fxtest
+  - testing/is
+  - testing/nettest
+  - tracing/opentracing
 - name: github.com/goph/healthz
   version: 571dac1216f2f4f920458b3b93f5835ec1bd35c6
 - name: github.com/goph/nest
@@ -60,6 +62,7 @@ imports:
   subpackages:
   - hcl/ast
   - hcl/parser
+  - hcl/printer
   - hcl/scanner
   - hcl/strconv
   - hcl/token
@@ -92,22 +95,22 @@ imports:
 - name: github.com/spf13/jwalterweatherman
   version: 7c0cea34c8ece3fbeb2b27ab9b59511d360fb394
 - name: github.com/spf13/pflag
-  version: e57e3eeb33f795204c1ca35f56c44f83227c6e66
+  version: 583c0c0531f06d5278b7d917446061adc344b5cd
 - name: github.com/spf13/viper
-  version: 25b30aa063fc18e48662b86996252eabdcf2f0c7
+  version: b5e8006cbee93ec955a89ab31e0e3ce3204f3736
 - name: github.com/stretchr/testify
   version: 12b6f73e6084dad08a7c6e575284b177ecafbc71
   subpackages:
   - assert
   - require
 - name: go.uber.org/atomic
-  version: 8474b86a5a6f79c443ce4b2992817ff32cf208b8
+  version: 1ea20fb1cbb1cc08cbd0d913a96dead89aa18289
 - name: go.uber.org/dig
   version: d100de9c8cc8358591507951141bc107713ba671
   subpackages:
   - internal/digreflect
 - name: go.uber.org/fx
-  version: 35bf66c87beb2c8ec1a68cf00b54542e2d169c0b
+  version: ed7e99834c0a7099c6cb6434fe5a7b007ac00db9
   subpackages:
   - fxtest
   - internal/fxlog
@@ -126,7 +129,7 @@ imports:
   - lex/httplex
   - trace
 - name: golang.org/x/sys
-  version: c4489faa6e5ab84c0ef40d6ee878f7a030281f0f
+  version: 9f7170bcd8e9f4d3691c06401119c46a769a1e03
   subpackages:
   - unix
 - name: golang.org/x/text
@@ -141,11 +144,12 @@ imports:
   subpackages:
   - googleapis/rpc/status
 - name: google.golang.org/grpc
-  version: 8e4536a86ab602859c20df5ebfd0bd4228d08655
+  version: 41344da2231b913fa3d983840a57a6b1b7b631a1
   subpackages:
   - balancer
   - balancer/base
   - balancer/roundrobin
+  - channelz
   - codes
   - connectivity
   - credentials
@@ -168,7 +172,7 @@ imports:
   - tap
   - transport
 - name: gopkg.in/yaml.v2
-  version: 287cf08546ab5e7e37d55a84f7ed3fd1db036de5
+  version: 53feefa2559fb8dfa8d81baad31be332c97d6c77
 testImports:
 - name: github.com/davecgh/go-spew
   version: adab96458c51a58dc1783b3335dcce5461522e75

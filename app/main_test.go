@@ -4,11 +4,11 @@ import (
 	"os"
 	"testing"
 
-	"github.com/goph/fxt/test"
-	"github.com/goph/fxt/test/is"
+	"github.com/goph/fxt/testing"
+	"github.com/goph/fxt/testing/is"
 )
 
-var runnerFactoryRegistry test.RunnerFactoryRegistry
+var runnerFactoryRegistry fxtesting.RunnerFactoryRegistry
 
 func TestMain(m *testing.M) {
 	runner, err := runnerFactoryRegistry.CreateRunner()
@@ -17,7 +17,7 @@ func TestMain(m *testing.M) {
 	}
 
 	if is.Unit || is.Integration || !is.Acceptance {
-		runner = test.AppendRunner(runner, m)
+		runner = fxtesting.AppendRunner(runner, m)
 	}
 
 	result := runner.Run()
